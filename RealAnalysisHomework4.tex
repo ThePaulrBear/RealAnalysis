@@ -1,0 +1,214 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\DeclarePairedDelimiter{\paren}{\lparen}{\rparen}
+\DeclarePairedDelimiter{\bracks}{\lbrack}{\rbrack}
+\DeclarePairedDelimiter{\braces}{\lbrace}{\rbrace}
+
+\newcommand{\limittoinfy}[1]{\lim_{#1 \to \infty}}
+\def \limittoinfyn{\limittoinfy{n}}
+
+\newcommand{\sumto}[1]{\sum_{n=1}^{#1}}
+\def \sumtoinfy {\sum_{n=1}^{\infty}}
+
+\newcommand{\set}[1]{\{#1\}}
+\def \sn {s_n}
+\def \tn {t_n}
+\def \xn {x_n}
+\def \an {a_n}
+\def \bn {b_n}
+
+\def \snplusone{s_{n+1}}
+\def \snfrac {\frac{\snplusone}{\sn}}
+
+\def \nfrac{\frac{1}{n}}
+\def \novernplusone {\frac{n}{n+1}}
+
+\begin{document}
+\title{CS 117 Real Analysis - Assignment 4}
+\author{\textbf{Paul Wintz}}
+\date{February 12, 2018}
+\maketitle
+
+\section*{3.2 Finite Sums}
+\paragraph{Exercise 3.2.1.} \textit{Prove the formula}
+\[ \sum_{k=1}^{n} k = \frac{n(n+1)}{2}. \]
+
+%If we define S_n as sum of k from k=1 to n. 
+%Then 
+
+\begin{proof}
+	We define $S_n = \sum_{k=1}^{n} k$. 
+	\begin{align*}
+	S_n + S_n &= 1 + 2 + \dots + (n-1) + n \\
+	 		  &\ \ \ + n + (n-1) + \dots + 2 + 1 \\ 
+              &= (n+1) + (n+1) + ... + (n+1) + (n+1) \\
+	          &= n(n+1)
+	\end{align*}
+	Therefore $S_n = \frac{n(n+1)}{2}$
+\end{proof}
+
+\def \Ak {A_k}
+\def \AkSeries {\abs{a_1 + a_2 + \cdots + a_k}}
+\def \absum {\abs*{\sum_{k=1}^{n} a_kb_k}}
+\def \abstarsum {\abs*{\sum_{k=1}^{n} a^*_kb_k}}
+\paragraph{Exercise 3.2.17.} \textit{Let $\braces{a_k}$ and $\braces{b_k}$ be sequences with
+$\braces{b_k}$ positive and decreasing, and} $\AkSeries  \le K$ \textit{for all k. Show that for all n} \[ \absum \le Kb_1 \]
+
+\begin{proof}
+	Let $\Ak = \AkSeries$. \\
+	For k =  1, then $\abs{a_1}  \leq K$, so $-K \leq a_1 \leq K$ \\
+	If $a_1 = K$, then $A_1 = K$. If $A_n = K$ and $a_{n+1}$ is positive, then $A_{n+1} > K$, so $a_{n+1} \leq 0$. \\
+	In this case, $$\absum = \abs{a_1b_1} = Kb_1$$
+	Let us define a second series $A^*_k = \{a^*_1 = a_1 - x, a^*_i = x, a^*_n = 0\ \forall n\ne 1, i\}$, where $1 < i \leq k$, and $0 < x < 2a_1 = 2K$ ($x$ must be less than $2K$, otherwise $A^*_2 > K$), and $a^*_1 = a_1$ if $ k = 0$. Note that $A^*_k = A_k\ \forall k > 1$. \\
+	Thus:
+	\begin{align*}
+		A^*_k & = \abstarsum \\
+		&= \abs{a^*_1 b_1 + a^*_i b_i} \\
+		&=\abs{(a_1 - x) b_1 + x b_i} \\
+	\end{align*}
+	
+	From above, $0 < x < 2a_1$. Furthermore, $0 < b_1-b_i \leq b_1$ because $\set{b_k}$ is a decreasing, positive sequence, so:
+	\begin{align*}
+		0 < x (b_1 - b_i) &< 2 a_1 b_1 \\
+		-2 a_1 b_1 < - x (b_1 - b_i) &< 0 \\
+		-a_1 b_1 < a_1 b_1 - x (b_1 - b_i) &< a_1 b_1\\		
+		\abs{a_1b_1 - x (b_1 - b_i)} &< a_1 b_1 \\
+		\abs{(a_1 - x) b_1 + x b_i} &< a_1 b_1 \\
+	\end{align*}
+	Therefore, $A^*_k < A_k = kb_1$ and we can conclude that $$\absum \leq Kb_1$$
+	
+\end{proof}
+
+
+\section*{3.3 Infinite Unordered Sums}
+\paragraph{Exercise 3.3.4.} \textit{Show that if $\sum_{i\in I}a_i$ converges then so too does} $\sum_{i\in J}a_i$ for every $J \subset I$.
+
+\begin{proof}
+From Theorem 3.34, we know that a finite set $I_0$ exists such that $$\abs*{\sum_{i \in I'} a_i} < \epsilon$$ for $\epsilon > 0$ and every finite set $I' \subseteq I/I_0$
+
+If we remove any number of elements from I to form a subset, J, then $J_0 = I_0 \cap J$, and all sets $J' \subseteq J/J_0$ will be a subset of one of the sets $I'$.
+
+Since $I'$ can be any subset of $I/I_0$, the sum of any combination of these elements is less than $\epsilon$, and since $J'$ is a subset of $I'$, then $$\abs*{\sum_{i \in J'} a_i} < \epsilon$$
+Therefore $$\sum_{i\in J}a_i$$ converges.
+\end{proof}
+
+
+\paragraph{Exercise 3.3.10.} \textit{Show that} $ \sum_{i \in \mathbb{N}} \frac{1}{i} $ \textit{diverges.} \newline
+
+\begin{proof}
+We can group terms of the harmonic series in to a sequence such that the sum of the sequence equals the harmonic series. $$\set{a_n} = \set{1 + \frac{1}{2}, \frac{1}{3} + \frac{1}{4}, \frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8}, \dots}$$ and $$\sumtoinfy a_n = \sum_{i \in \mathbb{N}} \frac{1}{i}$$
+
+The $n=1$ element is clearly greater than $\frac{1}{2}$. For $n > 1$, each element is the sum of $2^{n-1}$ fractions. The last fraction is the smallest, and always equals $\frac{1}{n^2}$. Thus, $a_n >   \frac{2^{n-1}}{2^n} = 2^{-1} = \frac{1}{2}$ for all $n > 1$. Therefore, the sum $\sumto{N} a_n > \frac{N}{2}$, and $$\sumtoinfy a_n = \sum_{i \in \mathbb{N}} \frac{1}{i} \rightarrow \infty$$ \newline
+\end{proof}
+
+\textit{Are there any infinite subsets $J \subset \mathbb{N}$ such that} $ \sum_{i \in J} \frac{1}{i} $ \textit{converges?} \newline
+
+Yes, the subset $J = \set{j : j = n^2, n \in \mathbb{N}}$ will converge.
+
+\section*{3.4 Ordered Sums: Series}
+
+\def \kinfsum{\sum_{k=1}^{\infty}}
+\def \sumkton{\sum_{k=1}^{n}}
+
+\def \aplusbsum {\sum_{k=1}^{\infty} (a_k+b_k)}
+\def \asum {\sum_{k=1}^{\infty} a_k}
+\def \bsum {\sum_{k=1}^{\infty} b_k}
+\paragraph{Exercise 3.4.3.} \textit{If $\aplusbsum$ converges, what can you say about the series} \[ \asum \quad \textit{and} \quad \bsum ? \] \newline
+
+We can conclude that either both series converge, or both series diverge. 
+\begin{proof}
+Let us define $$A = \asum \quad \textit{and} \quad B = \bsum$$
+
+From Theorem 3.9, we know that if A and B converge, then so does $$\aplusbsum$$ This means that it is possible for both A and B converge. 
+
+If A diverges, and B converges, then B equals a finite value. When you add a finite value to a divergent series, than you still have a divergent series. The same argument holds if you switch A and B, therefore, it is impossible for only one of the series to be divergent. 
+
+Both series can divergent, however, as we can see by example:
+$$\set{a_n} = \set{1,  -1, 1, -1, \dots}$$
+$$\set{b_n} = \set{-1, 1, -1, 1, \dots}$$
+$$\set{a_n + b_n} = \set{0}$$
+\end{proof}
+
+\paragraph{Exercise 3.4.4.} \textit{If $\aplusbsum$ diverges, what can you say
+about the series} \[ \asum \quad \textit{and} \quad \bsum ? \]
+
+Let us define $$A = \asum \quad \textit{and} \quad B = \bsum$$
+
+A or B must diverge. 
+
+\begin{proof}
+%	Proof by contradiction
+Assume that A and B both converge. By Theorem 3.8, then $$\aplusbsum$$ also converges. But it does not, therefore A and B do not both converge. 
+\end{proof}
+
+\paragraph{Exercise 3.4.5.} \textit{If the series $\kinfsum (a_{2k}+a_{2k-1})$ converges, what can you say about the series $\kinfsum a_k$? \newline}
+
+The series $\kinfsum a_k$ can diverge or converge. 
+
+\begin{proof}
+
+If $\set{a_n} = \set{1, -1, 1, -1, \dots}$, then $\kinfsum (a_{2k}+a_{2k-1})$ converges to zero, but $\kinfsum a_k$ always oscillates between 0 and 1, and thus diverges.
+Alternatively, if $\set{a_n} = \set{0}$, then both $\kinfsum (a_{2k}+a_{2k-1})$ and $\kinfsum a_k$ converge to zero.
+
+\end{proof}
+
+
+\paragraph{Exercise 3.4.6.} \textit{If the series $\kinfsum a_k$ converges, what can you
+say about the series} \[ \kinfsum \paren*{a_{2k} + a_{2k-1}}? \]
+
+This series must converge, since it is a sum of exactly the same terms as $\kinfsum a_k$.
+
+\paragraph{Exercise 3.4.12.} \textit{Using your result from Exercise 3.2.18, obtain a formula for
+the \emph{perpetuity} of P dollars a year paid every year, starting next year and for every after.
+Can you find a way to do this without using a geometric series?}
+
+%TODO
+
+\paragraph{Exercise 3.4.15.} \textit{Does the series}
+\[ \kinfsum \log \paren*{\frac{k+1}{k}} \] \textit{converge or diverge?} \newline
+
+This series diverges. 
+\begin{proof}
+We can use the properties of logarithms to separate $\log(k+1)$ from $\log(k)$
+$$\sumkton \log(\frac{k+1}{k}) = \sumkton \log(k+1) - \log(k)$$
+Next, since this in the form off a telescoping series: 
+$$\sumkton s_{n+1} - s_n$$ we can cancel all of the middle terms and are left with 
+
+\begin{align*}
+\sumkton \log(k+1) - \log(k) &= \log(n+1) - \log(1) \\
+&= \log(n+1)
+\end{align*}
+Which we know diverges to +$\infty$, therefore $$\kinfsum \log \paren*{\frac{k+1}{k}}$$ diverges.
+\end{proof}
+
+\def \ab {\frac{a}{b}}
+\def \harmonic {\frac{1}{n}}
+\def \generalharmonic {\frac{1}{bn + a}}
+\def \generalharmonictimesb {\frac{1}{n + \ab}}
+\paragraph{Exercise 3.4.21.} \textit{Determine whether the series}
+\[ \sum_{n=1}^{\infty} \frac{1}{a + nb} \] \textit{converges or diverges, where a and b are positive real numbers.} \newline
+
+This series diverges.
+\begin{proof}
+We know that the harmonic series, $$\sumtoinfy \harmonic$$ diverges. From Theorem 3.11, all tails of the harmonic series, $$\sumtoinfy \frac{1}{n + M}$$ must also diverges ($ \forall M > 0$). 
+If we choose $\ab < M$, then 
+\begin{align*}	
+	n + \ab < n + M \\
+	\frac{1}{n + M} < \generalharmonictimesb
+\end{align*} for all n.
+
+We know, then, that $$\sumtoinfy \generalharmonictimesb$$ diverges because each term is larger than our chosen tail of the harmonic series. 
+
+From the contrapositive of theorem 3.9, we know that if $\sumtoinfy ba_n$ diverges, then the $\sumtoinfy a_n$ must also diverge. If we take $$a_n = \generalharmonic$$ and $b \ne 0$, then we see that $$\sumtoinfy ba_n = \sumtoinfy \generalharmonictimesb$$ which we have already shown to diverge, therefore $$\sumtoinfy a_n = \sumtoinfy \generalharmonic$$ diverges.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,243 @@
+\documentclass[11pt]{article}
+% decent example of doing mathematics and proofs in LaTeX.
+% An Incredible degree of information can be found at
+% http://en.wikibooks.org/wiki/LaTeX/Mathematics
+
+% Use wide margins, but not quite so wide as fullpage.sty
+\marginparwidth 0.25in 
+\oddsidemargin 0.25in 
+\evensidemargin 0.25in 
+\marginparsep 0.25in
+\topmargin 0.25in 
+\textwidth 6in \textheight 8 in
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{upgreek}
+\usepackage{semantic}
+\usepackage[shortlabels]{enumerate}
+
+\begin{document}
+	\author{Paul Wintz}
+	\title{Homework Set 2}
+	\maketitle
+	
+	\section*{2.2.8} 
+	\subsection*{Consider the sequence defined recursively by $x_1 = \sqrt{2}, x_n = \sqrt{2 + x_{n-1}}$
+		Show, by induction, that $x_n < 2$ for all n.}
+	
+	Proof by induction. For n=1:
+	\begin{align*}
+	2 &< 4 \\
+	\sqrt{2} &< \sqrt{4} = 2 \\
+	2 + \sqrt{2} &< 2 + 2 = 4 \\
+	x_ 1 = \sqrt{2 + \sqrt{2}} &< \sqrt{4} = x_2  \\
+	\end{align*}
+	For n+1, assume $2 + x_n > 4$
+	\begin{align*}
+	x_n &= \sqrt{2 + x_{n-1}} \\
+	x_{n+1} &= \sqrt{2 + x_n} \\
+	{x_{n+1}}^2 &= 2 + x__n \\
+	\TODO \\
+	\end{align*}
+	
+	
+	\section*{2.2.9}
+	\subsection*{Consider the sequence defined recursively by $x_1 = \sqrt{2}, x_n = \sqrt{2 + x_{n-1}}$ 
+		Show, by induction, that $x_n < x_{n+1} \forall n$.}
+	
+	Proof by induction. For n=1:
+	\begin{align*}
+	0 &< \sqrt{2} \\
+	2 &< 2 + \sqrt{2} \\
+	\sqrt{2} &< \sqrt{2 + \sqrt{2}} \\
+	x_1 &< x_2 \\
+	\end{align*}
+	
+	For $x_{n+1}$:
+	\begin{align*}
+	x_n &> 0 \\ 
+	x_{n+1} &= \sqrt{2 + x_n}
+	\\TODO
+	\end{align*}
+	
+	
+	\section*{2.3.6}
+	\subsection*{In Cantor’s proof presented in this section we took for granted material about infinite decimal expansions. This is entirely justified by the theory of sequences studied later. Explain what it is that we need to prove about infinite decimal expansions to be sure that this proof is valid.}
+	
+	We must prove that every decimal expansion represents an element in the real numbers. Otherwise, the value of c could be a decimal expansion that is not in the real numbers and the proof collapses. 
+	
+	
+	\section*{2.4.13}
+	\subsection*{Let $\{s_n\}$ be a sequence and obtain a new sequence (sometimes called the “tail” of the sequence) by writing
+		$t_n = s_{M+n}$ for $n = 1, 2, 3, \ldots$ where M is some integer (perhaps large). Show that $\{s_n\}$ converges if and only if ${t_n}$ converges.}
+	
+	%TODO
+	
+	
+	\section*{2.4.14}
+	\subsection*{Show that the statement “$\{s_n\}$ converges to L” is false iff there is a positive number $c$ so that the inequality $|s_n − L| > c$ holds for infinitely many values of $n$.}
+	
+	%TODO
+	
+	
+	\section*{2.4.15}
+	\subsection*{If $\{s_n\}$ is a sequence of positive numbers converging to 0, show that $\{\sqrt{s_n}\}$ also converges to zero.}
+	
+	\begin{align*}
+	&\{s_n\} \xrightarrow{} 0 \\
+	\implies &|s_n - 0| < \epsilon_0,\ \epsilon_0 > 0 \\
+	\text{Define: } &\epsilon_0 = \epsilon^2 \\
+	\implies &|s_n - 0| < \epsilon^2 \\
+	\implies &\sqrt{s_n} < \sqrt{\epsilon^2}  \\
+	\implies &\sqrt{s_n} < \epsilon  \\
+	\therefore\ &\{\sqrt{s_n}\} \xrightarrow{} 0\\
+	\end{align*}
+	
+	\section*{2.5.6}
+	\def \myfrac { \frac{x_n}{x_n + 1}}
+	\subsection*{Prove that if $x_n \xrightarrow{} \infty $ then the sequence $s_n = \myfrac{}$ is convergent.}
+	
+	\begin{align*}
+	&x_n \rightarrow 0 \\ 
+	\implies &\forall\ M\ \exists\ N \text{ such that } x_n \geq M, \forall\ n \geq N \\ 
+	\TODO   \\
+	\end{align*}
+	
+	\subsection*{Is the converse true?}
+	No. The sequence $\{x_n\} = \{1, -1, 2, -2, 3, -3, \ldots\}$ does not converge, due to oscillation, but the sequence $s_n = \myfrac{}$ converges to 1. 
+	
+	
+	\section*{2.5.10}
+	\def \myseq {n^p + \alpha_1n^{p-1} + \alpha_2n^{p-2} + \ldots + \alpha_p }
+	\def \myseqworstcase {n^p - a_{*} (n^{p-1} + n^{p-2} + \dots + 1)}
+	\def \myharmseq {\frac{1}{n} + \frac{1}{n^2} + \dots + \frac{1}{n^p}}
+	\subsection*{Show that the sequence $\myseq{} \xrightarrow{} \infty$, where p is a positive integer and $\alpha_1, \alpha_2, \ldots, \alpha_p \in \mathbb{R}$.}
+	
+	\begin{align*}
+	\text{Define: } a_{*} &= max\{|a_i|\} \\
+	a_{*} &\geq a_i\ \forall\ i \\
+	\myseq{} &\geq \myseqworstcase{} \\
+	\text{Assume: } \myseqworstcase{} \rightarrow \\ 
+	|\myseqworstcase{} - L| &< \epsilon \\
+	n^p | \frac{n^p}{n^p} - a_{*} (\myharmseq) - \frac{L}{n^p}| &< \epsilon \tag{Multiply left side by mult. identity: $\frac{n^p}{n^p}$} \\
+	\frac{1}{n^p} \rightarrow 0 \tag{$\forall\ p > 0$} \\
+	\implies \myharmseq \rightarrow 0 \tag{The limit of a sum equals the sum of the limits of its terms} \\
+	\implies n^p | 1 - a_{*} (\myharmseq) - \frac{L}{n^p}| &= n^p | 1 - \frac{L}{n^p}| \\
+	&= | n^p - L| < \epsilon \\
+	\TODO \\
+	\end{align*}
+	
+	
+	\section*{2.6.1}
+	\def \myintseq {\{0, -1, 1, -2, 2, \dots\}}
+	\subsection*{Which statements are true?}
+	\begin{enumerate}[(a)]
+		
+		\item \textbf{If $\{s_n\}$ is unbounded then it is true that either $\lim_{n \to \infty} s_n = \infty$ or $\lim_{n \to \infty} s_n = {-\infty}$.}
+		
+		False. Counter-example: The sequence \myintseq{} is unbounded, but does not converge to $-\infty\ \text{ or } \infty$.
+		
+		\item \textbf{If $\{s_n\}$ is unbounded then $\lim_{n \to \infty} |s_n| = \infty$.}
+		
+		False. Counter-example: The sequence $\{s_n\} = \{0, 1, 0, 2, 0, 3,  \dots\}$ is unbounded, but $\{|s_n|\}$ does not converge to $\infty$.
+		
+		\item \textbf{If $\{s_n\}$ and $\{t_n\}$ are both bounded then so is $\{s_n + t_n\}$.}
+		
+		True. Every element in the sequence $\{s_n\}$ and $\{t_n\}$ must be in the ranges $[\min(s_n), \max(s_n)]$ and $[\min(t_n), \max(t_n)]$ respectively, therefore every element in $\{s_n + t_n\}$ must be in $$[\min(s_n) + \min(t_n), \max(s_n) + \max(t_n)]$$.
+		
+		\item \textbf{If $\{s_n\}$ and $\{t_n\}$ are both unbounded then so is $\{s_n + t_n\}$.}
+		
+		False. Counter-example: $s_n = -t_n$.
+		
+		\item \textbf{If $\{s_n\}$ and $\{t_n\}$ are both bounded then so is $\{s_nt_n\}$.}
+		
+		True. Every element in the sequence $\{s_n\}$ and $\{t_n\}$ must be in the ranges $[\min(s_n), \max(s_n)]$ and $[\min(t_n), \max(t_n)]$ respectively, therefore every element in $\{s_nt_n\}$ must be in $$[\min(s_n)\min(t_n), \max(s_n)\max(t_n)]$$. 
+		
+		\item \textbf{If $\{s_n\}$ and $\{t_n\}$ are both unbounded then so is $\{s_nt_n\}$.}
+		
+		False. Counter-example: $\{s_n\}$ = \{0, 1, 0, 2, 0, 3, \dots\} and $\{t_n\}$ = \{1, 0, 2, 0, 3, \dots\} 
+		
+		\item \textbf{If $\{s_n\}$ is bounded then so is $\{1/s_n\}$.}
+		
+		False. Counter-example: $\{s_n\} = \{\frac{1}{n}\}$.
+		
+		\item \textbf{If $\{s_n\}$ is unbounded then $\{1/s_n\}$ is bounded.}
+		
+		False. Counter-example: $\{s_n\} = \{1, \frac{1}{1}, 2, \frac{1}{2}, 3, \dots\}$
+		
+	\end{enumerate}
+	
+	
+	\section*{2.6.6}
+	\subsection*{As a computer experiment compute the values of the sequence
+		$$s_n = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \ldots \frac{1}{n}$$ for large values of n. Is there any indication in the numbers that you see that this sequence fails to converge or must be unbounded?}
+	
+	Yes, if you sum up to n=N, you get the following values: \newline  \newline
+	N=1: sum $\approx$ 1 \newline
+	N=10: sum $\approx$ 2.928 \newline
+	N=100: sum $\approx$ 5.187 \newline
+	N=1000: sum $\approx$ 7.485 \newline
+	N=10000: sum $\approx$ 9.787 \newline
+	
+	If we calculate the successive differences: \{2.928-1, 5.187-2.928, 7.485-5.187, 9.787-7.485\}= \{1.928, 2.259, 2.298, 2.302\}, we see that the difference increases with each additional multiple of 10 for the value of N. Therefore $s_n$ is unbounded, because we can surpass any large value M by multiplying N by 10 as many times as necessary. 
+	
+	\section*{2.7.4}
+	\subsection*{Prove Theorem 2.16 but verifying and using the inequality $$|s_nt_n - ST| \leq |(s_n − S)(t_n − T)| + |S(t_n − T)| + |T(s_n − S)|$$ in place of the inequality (1). Which proof do you prefer?}
+	
+	% TODO
+	
+	\section*{2.7.5}
+	\def \mylimit {\lim_{n \to \infty}}
+	\textbf{Which statements are true?}
+	\begin{enumerate}[(a)]
+		\item If $\{s_n\}$ and $\{t_n\}$ are both divergent then so is $\{s_n + t_n\}$.
+		
+		False. Counter-example: $\{s_n\} = \{-1, 1, -1, 1 \dots\}$ and $\{t_n\} = \{1, -1, 1, -1, \dots\}$
+		
+		\item If $\{s_n\}$ and $\{t_n\}$ are both divergent then so is $\{s_nt_n\}$.
+		
+		False. Counter-example: $\{s_n\} = \{-1, 1, -1, 1 \dots\}$ and $\{t_n\} = \{1, -1, 1, -1, \dots\}$
+		
+		\item If $\{s_n\}$ and $\{s_n + t_n\}$ are both convergent then so is $\{t_n\}$.
+		
+		True. 
+		
+		\begin{align*}
+		\mylimit{}\{s_n + t_n\} - \mylimit{}\{s_n\} &= \mylimit{}\{s_n\} + \mylimit{}\{t_n\} - \mylimit{}\{s_n\} \tag{By Algebra of Limits}\\
+		&= \mylimit{}\{t_n\}
+		\end{align*}
+		
+		\item If $\{s_n\}$ and $\{s_nt_n\}$ are both convergent then so is $\{t_n\}$.
+		
+		False.
+		
+		\item If $\{s_n\}$ is convergent so too is $\{1/s_n\}$.
+		
+		False.
+		
+		\item If $\{s_n\}$ is convergent so too is $\{s_n^2\}$.
+		
+		True.
+		
+		\item If $\{s_n^2\}$ is convergent so too is $\{s_n\}$.
+		
+		False.
+		
+	\end{enumerate}
+	
+	
+	\section*{2.7.8}
+	\subsection*{Why are Theorems 2.15 and 2.16 no help in dealing with the limits
+		$\lim_{n \to \infty} \sqrt{n + 1} {-} \sqrt{n}$ and $\lim_{n \to \infty} \sqrt{n} (\sqrt{n+1} - \sqrt{n})$?
+		What else can you do?}
+	
+	
+	
+	
+	
+	
+	
+	
+\end{document}
