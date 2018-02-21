@@ -17,39 +17,99 @@
 \author{Paul Wintz}
 \date{February 21, 2018}
 
+\newcommand{\limittoinfy}[1]{\lim_{#1 \to \infty}}
+\def \limittoinfyn{\limittoinfy{n}}
+
+\newcommand{\sumto}[1]{\sum_{n=1}^{#1}}
+\def \sumtoinfy {\sum_{n=1}^{\infty}}
+
+\newcommand{\set}[1]{\{#1\}}
+\def \sn {s_n}
+\def \tn {t_n}
+\def \xn {x_n}
+\def \an {a_n}
+\def \bn {b_n}
+
+
 \begin{document}
 \maketitle
 
 %Additional problems not to be turned in: 4.2.1, 4.2.2, 4.3.5
 
-\section*{4.2 Points}
 \paragraph{Exercise 4.2.4.} \textit{Show (1) that no interior point of a set can be a boundary point, (2) that it is possible for an accumulation point to be a boundary point, and (3) that every isolated point must be a boundary point.} \newline
 
-(1) If a point P is an interior point for set S, then there is an interval around P that is within S. If there is an interval that is completely with within S, then there exists an interval that contains P such that it does not contain any points that are not in S, therefore P cannot be a boundary point. %TODO: Details
+(1) If $x$ is an interior point for set $S$, then there is an interval $I = (x - c, x + c) \subseteq S$, for some $c > 0$. Since the interval $I$ is does not contain any points that are not in S, then $x$, by definition, cannot be a boundary point. \newline
 
-(2) Say that P is a point such that for all 0<delta<M, the interval (p-delta, p), contains an infinite number of points in the set S and the interval (p, p+delta) contains no points in S. Clearly, by definition, P is a boundary point of S. Also by definition, P must be a point of accumulation of S because there are infinite points in (p-delta, p+delta) that are in S. Therefore it is possible for a point ot be both a point of accumulation and a boundary point.
+(2) Let $x$ be a point such that $\forall 0 < \delta$ the interval $(x - \delta, x)$, contains an infinite number of points in a set $S$ and the interval $(x, x + \delta)$ contains no points in $S$. By definition, $x$ is a boundary point of $S$. And, because there are infinite points in $(x - \delta, x + \delta)$ that are in $S$, $x$ is also be an accumulation point of $S$. Therefore it is possible for a point to be both a point of accumulation and a boundary point. \newline
 
-(3) 
+(3) If $x$ is any isolated point, then there exists a value $\delta > 0$ such that $(x-\delta, x+\delta)$ contains no other points in $S$ aside from $x$. This interval contains many points that are not in $S$, and one point, $x$, that is in $S$. Therefore every isolated point is a boundary point.
 
-\paragraph{Exercise 4.2.5.} Let $E$ be a nonempty set of real numbers that is bounded above but has no maximum.
-Let $x = \sup E$.
-Show that $x$ is a point of accumulation of $E$.
-Is it possible for $x$ to also be an interior point of $E$?
-Is $x$ a boundary point of $E$?
+\paragraph{Exercise 4.2.5.} \textit{Let $E$ be a nonempty set of real numbers that is bounded above but has no maximum. Let $x = \sup E$. Show that $x$ is a point of accumulation of $E$.}
+	
+\begin{proof} Because $x$ is the supremum of $E$, we know that $\forall \alpha < x$ ($\alpha$ not necessarily in $E$), there is a value $e \in E$ such that $\alpha < e$. Furthermore, $x$ is not in $E$, otherwise it would be the maximum, so $\forall e \in E$, $e < x$. It then follows directly that $\forall c > 0$, there exists an element $e \in E$ such that $x - c < e < x$. For any value $e_1$ in the interval $(x - c_1, x)$, we can choose a smaller interval, $(x - c_2, x)$, where $c_2 < x - e_1$, that does not contain $e_1$. But, as we showed earlier, this interval must contain an element $e_2 \in E$. By induction, there are an infinite number of elements of $E$ in the interval $(x - c,  x)$, and thus in $(x - c,  x + c)$, therefore $x$ is a point of accumulation.
+\end{proof}
+		
+\paragraph*{} \textit{Is it possible for $x$ to also be an interior point of $E$?} \newline
 
-\paragraph{Exercise 4.2.16.} Show that there is no set which has the set $\mathbb{Q}$ as its set of accumulation points.
+No. \begin{proof}
+The supremum of a set is in the set if and only if it is the maximum of the set. Since $E$ has no maximum, then $x$ is not in the set. Therefore, $\forall c > 0$ the interval $(x - c, x + c)$ will contain a point, $x$, that is not in $E$, so by definition $x$ is not an interior point. 
+\end{proof}
 
-\paragraph{Exercise 4.2.21.} Let $E$ be a set and $\{x_n\}$ a sequence of points, not necessarily elements of $E$.
-Suppose that $\lim_{x\rightarrow\infty} x_n = x$ and that $x$ is an interior point of $E$.
-Show that there is an integer $N$ so that $x_n \in E$ for all $n > N$.
+\paragraph*{} \textit{Is $x$ a boundary point of $E$?} \newline
 
-\section*{4.3 Sets}
-\paragraph{Exercise 4.3.9.} Show that the set $E'$ of points of accumulation of any set $E$ must be closed.
+Yes
+\begin{proof} 
+There are no elements in $E$ greater than $x$ in $E$, since $x = \sup E$. But, as we showed earlier, $\forall c > 0$, the interval $I = (x - c,  x + c)$ contains an element of $E$.  Therefore, $I$ contains a point in $E$ and a point not in $E$, so $x$ is a boundary point of $E$.
+\end{proof}
 
-\paragraph{Exercise 4.3.13.} If $A$ is open and $B$ is closed, what can you say about the sets $A \setminus B$ and $B \setminus A$?
+\paragraph{Exercise 4.2.16.} \textit{Show that there is no set which has the set $\mathbb{Q}$ as its set of accumulation points.} 
 
-\paragraph{Exercise 4.3.18.} Let $\{x_n\}$ be a sequence of real numbers.
-Let $E$ denote the set of all numbers $z$ that have the property that there exists a subsequence $\{x_{n_k}\}$ convergent to $z$.
-Show that $E$ is closed.
+\begin{proof}
+We show below, in Exercise 4.3.9, that for any set of real numbers $E$, the set $E'$ of accumulation points of $E$ is closed. We know irrational numbers are points of accumulation for $\mathbb{Q}$, so $\mathbb{Q}$ is not closed, therefore $\mathbb{Q}$ is not the set of accumulation points of any set.
+\end{proof}
+
+\newpage
+\paragraph{Exercise 4.2.21.} \textit{Let $E$ be a set and $\{x_n\}$ a sequence of points, not necessarily elements of $E$. Suppose that $\lim_{x\rightarrow\infty} x_n = x$ and that $x$ is an interior point of $E$. Show that there is an integer $N$ so that $x_n \in E$ for all $n > N$.} 
+
+\begin{proof}
+	By the definition of limits, for all $\epsilon > 0$, there exists a $N$ such that $\forall n > N$, $|x_n - x| < \epsilon$. 
+	
+	If we expand the absolute value, we get 
+	\begin{alignat*}{3}
+		-\epsilon <\ &x_n &&- x &&< \epsilon \\
+		x - \epsilon < & &&x_n  &&< x + \epsilon
+	\end{alignat*}
+	
+	Therefore, $\forall n > N$ the interval $I = (x - \epsilon, x + \epsilon)$ contains $x_n$. Because $x$ is given to be an interior point, we know that for some value $\epsilon = c$, $I = (x - c, x + c) \subset E$, so all $x_n$ are in $E$, $\forall n > N$ . 
+	
+\end{proof}
+
+ 
+\paragraph{Exercise 4.3.9.} \textit{Show that the set $E'$ of points of accumulation of any set $E$ must be closed.}
+
+%TODO Everything
+
+
+\def \AB {A \setminus B} 
+\def \BA {B \setminus A} 
+\def \poa {point of accumulation}
+\paragraph{Exercise 4.3.13.} \textit{If $A$ is open and $B$ is closed, what can you say about the sets $\AB$ and $\BA$?} \newline
+
+$\BA$ is closed.
+\begin{proof}
+By the definition of an open set, every point in A must be an interior point, so for all $a \in A$: $$\exists c > 0 \text{ such that } (a - c, a + c) \subset A$$ Since $(a - c, a + c)$ is a subset of $A$, then $(a - c, a + c) \cap (\BA) = \emptyset$. The point $a$ then is cannot be a {\poa} in $\BA$, and since this is true for every point in $A$, we know that none of the points in $A$ are point of accumulation in $\BA$. Clearly, we cannot create new points of accumulation by removing points, therefore all points of accumulation of $\BA$ are in $\BA$, so $\BA$ is closed.
+\end{proof}
+
+%TODO Show that A/B is open
+
+\def \setxn {\{\xn\}}
+\def \xnk {x_{n_k}}
+\def \setxnk {\{\xnk\}}
+\paragraph{Exercise 4.3.18.} \textit{Let $\{x_n\}$ be a sequence of real numbers.
+Let $E$ denote the set of all numbers $z$ that have the property that there exists a subsequence $\{x_{n_k}\}$ convergent to $z$. Show that $E$ is closed.} 
+
+\begin{proof}
+Let $S$ be the set of all elements in $\setxn$. For every element $z \in E$ there exists a subsequence, $\setxnk$, such that $\setxnk$ converges to $z$. By definition of convergence, for all $\epsilon > 0$ there exists some value $n_0$ such that for all $n > n_0$, $\abs*{\xnk - z} < \epsilon$, so there are infinite points in $S$ contained in the interval $(z - \epsilon, z + \epsilon)$. Therefore $z$ must be a point of accumulation point of $S$, and $E$ is the set of all accumulation points of $S$, which in Exercise 4.3.9. we have shown is closed.
+\end{proof}
 
 \end{document}
