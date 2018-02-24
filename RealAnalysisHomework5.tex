@@ -87,20 +87,35 @@ We show below, in Exercise 4.3.9, that for any set of real numbers $E$, the set 
  
 \paragraph{Exercise 4.3.9.} \textit{Show that the set $E'$ of points of accumulation of any set $E$ must be closed.}
 
-%TODO Everything
+\begin{proof}
+Let $x$ be any accumulation point of $E'$. 
 
+Assume $x \notin E'$. By the definition of accumulation points, there exists $\epsilon > 0$ such that $(x - \epsilon, x + \epsilon) \cap E$ contains at most one point, $x$, in $E$. But, since $x$ is an accumulation point of $E'$, then $\exists y \in E'$ such that $\abs{x - y} < \epsilon_1$. Similarly, $y$ is an accumulation point of $E$, so $\forall \epsilon_2$, $\exists z \in E$ such that $\abs{y - z} < \epsilon_2$. If we take the interval $\abs{x - z}$, then:
+\begin{align*}
+	\abs{x - z} &= \abs{x + (y - y) - z} \\
+				&= \abs{(x - y) + (y - z)} \\
+				&\leq \abs{x - y} + \abs{y - z} \tag{by triangle inequality} \\
+				&< \epsilon_1 + \epsilon_2
+\end{align*}
+We can choose $\epsilon_1, \epsilon_2 < \frac{\epsilon}{2}$, which means $\abs{x - z} < \epsilon$, and every interval around $x$ contains at least two points in $E$, so $x$ is an accumulation of $E$ and $x \in E'$, which contradicts our initial assumption. Therefore, every accumulation point of $E'$ is in $E'$.
 
+\end{proof}
+
+\newpage
 \def \AB {A \setminus B} 
 \def \BA {B \setminus A} 
 \def \poa {point of accumulation}
 \paragraph{Exercise 4.3.13.} \textit{If $A$ is open and $B$ is closed, what can you say about the sets $\AB$ and $\BA$?} \newline
 
-$\BA$ is closed.
+$\AB$ is open.
 \begin{proof}
-By the definition of an open set, every point in A must be an interior point, so for all $a \in A$: $$\exists c > 0 \text{ such that } (a - c, a + c) \subset A$$ Since $(a - c, a + c)$ is a subset of $A$, then $(a - c, a + c) \cap (\BA) = \emptyset$. The point $a$ then is cannot be a {\poa} in $\BA$, and since this is true for every point in $A$, we know that none of the points in $A$ are point of accumulation in $\BA$. Clearly, we cannot create new points of accumulation by removing points, therefore all points of accumulation of $\BA$ are in $\BA$, so $\BA$ is closed.
+	to-do...
 \end{proof}
 
-%TODO Show that A/B is open
+$\BA$ is closed.
+\begin{proof}
+By the definition of an open set, every point in A must be an interior point, so for all $a \in A$: $$\exists c > 0 \text{ such that } (a - c, a + c) \subset A$$ Since $(a - c, a + c)$ is a subset of $A$, then $(a - c, a + c) \cap (\BA) = \emptyset$. The point $a$ then cannot be a {\poa} in $\BA$, and since this is true for every point in $A$, we know that none of the points in $A$ are point of accumulation of $\BA$. Clearly, we cannot create new points of accumulation by removing points from a set, therefore all points of accumulation of $\BA$ are in $\BA$, so $\BA$ is closed.
+\end{proof}
 
 \def \setxn {\{\xn\}}
 \def \xnk {x_{n_k}}
