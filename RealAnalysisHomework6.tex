@@ -12,6 +12,15 @@
 \DeclarePairedDelimiter{\bracks}{\lbrack}{\rbrack}
 \DeclarePairedDelimiter{\braces}{\lbrace}{\rbrace}
 
+% Highly-Reusable
+\def \R {\mathbb{R}}
+\def \epsilon {\varepsilon}
+\def \halfepsilon{\frac{\epsilon}{2}}
+
+
+% To enable lemmas
+\newtheorem{lemma}{Lemma}
+
 \title{Assignment 6}
 \author{Paul Wintz\\CS 117 Real Analysis}
 \date{February 26, 2018}
@@ -22,31 +31,80 @@
 % To be considered but not handed in:
 % 4.4.10, 4.4.11, 4.5.5 (unions only, not intersections), 4.6.6.
 
-\paragraph{Exercise 4.4.8.} \textit{A function $f: \mathbb{R} \rightarrow \mathbb{R}$ is said to be \textit{bounded at a point $x_0$} provided that there are positive numbers $\varepsilon$ and $M$ so that $\abs{f(x)} < M$ for all $x \in (x_0-\varepsilon, x_0+\varepsilon)$. 
-Show that the set of points at which a function is bounded is open.}
+\paragraph{Exercise 4.4.8.} A function $f: \R \rightarrow \R$ is said to be \textit{bounded at a point $x_0$} provided that there are positive numbers $\epsilon$ and $M$ so that $\abs{f(x)} < M$ for all $x \in (x_0 - \epsilon, x_0 + \epsilon)$. 
+Show that the set of points at which a function is bounded is open.
 % Part of this question is intentionally omitted.
 
 \begin{proof}
-	%TODO everything
+	Let $S$ be the set of all points where $f$ is bounded. It is given that for every point $x_0 \in S$, $\exists \epsilon >0$ and $M > 0$ such that $\abs{f(x)} < M$ for all $x \in (x_0 - \epsilon, x_0 + \epsilon)$. 
+	
+	Let us take any point $y \in (x_0 - \halfepsilon, x_0 + \halfepsilon)$. With algebra, we show:
+	\begin{align*}
+		x - \halfepsilon &< y \\
+		x - \halfepsilon - \halfepsilon &< y - \halfepsilon \\
+		x - \epsilon &< y - \halfepsilon
+	\end{align*}	
+	And: 
+	\begin{align*}
+	y &< x + \halfepsilon\\
+	y + \halfepsilon &< x + \halfepsilon + \halfepsilon\\
+	y + \halfepsilon &< x + \epsilon
+	\end{align*}
+	 Thus $(y - \halfepsilon, y + \halfepsilon) \subset (x_0 - \epsilon, x_0 + \epsilon)$. Since the conditions for $f$ to be bounded are true for all elements in $(x_0 - \epsilon, x_0 + \epsilon)$, they must also be true in $(y - \halfepsilon, y + \halfepsilon)$. Therefore all points in $(x_0 - \halfepsilon, x_0 + \halfepsilon)$ are in $S$, so $x_0$ is an interior point $\forall x_0 \in S$ and $S$ is open.
 \end{proof}
 
-\paragraph{Exercise 4.5.9.} \textit{A function $f: \mathbb{R} \rightarrow \mathbb{R}$ is said to be \textit{locally increasing} at a point $x_0$ if there is a $\delta > 0$ so that $f(x) < f(x_0) < f(y)$ whenever $x_0-\delta < x < x_0 < y < x_0+\delta.$ Show that a function that is locally increasing at every point in $\mathbb{R}$ must be increasing; that is, that $f(x) < f(y)$ for all $x < y$.}
+\paragraph{Exercise 4.5.9.} A function $f: \R \rightarrow \R$ is said to be \textit{locally increasing} at a point $x_0$ if there is a $\delta > 0$ so that $f(x) < f(x_0) < f(y)$ whenever $x_0-\delta < x < x_0 < y < x_0+\delta.$ Show that a function that is locally increasing at every point in $\R$ must be increasing; that is, that $f(x) < f(y)$ for all $x < y$.
+
+% See note 81. See Cousin's Lemma. Take a family of alli intervals[c,d] for which f(c) < f(d)aand check that the hypothese of that lemma hold on any interval.
 
 \begin{proof}
-	%TODO everything
+	%TODO work out details
+	One idea. If we look at the series x0 + delta0 = x1, xn = xn-1 + delta1, will either increase without bound, or will approach an accumulation point. If it approaches an accumulation,  + ..., then this will either increase without bound, or converge to a point of accumulation. If it converges, to a point of accumulation = a0. We know that the the function is locally increasing at a0, so we can start the process again. the points a0 + 
 \end{proof}
 
-\paragraph{Exercise 4.5.17.} \textit{Suppose that $E$ is compact. Is the set of boundary points of $E$ also compact?}
+\def \bacc {B_{acc}}
+\def \biso {B_{iso}}
+\newtheorem{lemma4517}{Lemma}
+\paragraph{Exercise 4.5.17.} Suppose that $E$ is compact. Is the set of boundary points of $E$ also compact? \newline
+
+Yes. 
+\begin{proof}
+	Let $B$ be the set of boundary points of $E$. 
+	
+	First let us show that $B$ is bounded. Since $E$ is bounded, $\exists M$ such that $\abs{e} < M$ $\forall e \in E$. It then follows that $\abs{b} \leq M$ $\forall b \in B$, so $B$ is bounded. 
+			
+	Now, we will show that $B$ is closed. Clearly, every boundary point of set must either be a point of accumulation or an isolated point. Let us partition $B$ into two sets, $\bacc$ and $\biso$, such that $\bacc$ is the set of boundary points that are accumulation points of $E$, and $\biso$ is the set of boundary points that are isolated points in $E$. 
+	
+	By definition, for all elements of $b_i \in \biso$ there exists $\epsilon > 0$ such that the only element from $E$ in $(b - \epsilon, b + \epsilon)$ is $b$ itself. It then follows that there is a neighborhood around $b$ that does not contain any other points in $B$, so $b$ is not a point of accumulation of $B$ and we can disregard it when examining if $B$ is closed. In other words, if $\bacc$ is closed, then $B$ is closed because $\biso$ does not contain any points of accumulation.
+
+	% Proof by Contradiction
+	Let us assume that $\bacc$ is not closed. By the negation of the definition of closed sets, $\exists b' \notin \bacc$ such that $b'$ is a accumulation point of $\bacc$. 
+	We know that if $E'$ is the set of accumulation points of $E$, then all accumulation points of $E'$ are in $E'$. Furthermore, since $E$ is closed, we know that $E' \subset E$. Therefore, since $b'$ is an accumulation point of $\bacc$, it is also an accumulation point for $E$ and $b' \in E$. 
+	
+	But, since $b'$ is an accumulation point of $\bacc$, then $\forall \epsilon > 0$ there exists $b_0 \in (b' - \halfepsilon, b' + \halfepsilon)$, such that $b_0 \in \bacc$.	However, since $b_0$ is boundary point of $E$, the interval $I = (b_0 - \halfepsilon, b_0 + \halfepsilon)$, there must exist $x \in E$ and $y \notin E$, where $x$ and $y$ are in $I$. But, this means that the interval $(b' - \epsilon, b' + \epsilon)$ contains $x$ and $y$, so $b'$ is a boundary point and $b' \in B$, which contradicts our assumption. Therefore $\bacc$ is closed.
+	
+\end{proof}
+
+\paragraph{Exercise 4.7.16.} Show that the only subsets of $\R$ that are both open and closed are $\emptyset$ and $\R$.
+
+\begin{lemma}
+	Any non-empty proper subset of $\R$ must have at least one boundary point. 
+\end{lemma}
 
 \begin{proof}
-	%TODO everything
+	Any non-empty $S \subset \R$, must have at least one point $x \in S$ and $y \notin S$. If $x < y$, we take $z = \inf([x, y]\cap S)$, then $z$ must be a boundary point of $S$. Similarly, if $y < x$, we take $z = \sup([y, x]\cap S)$, then $z$ must be a boundary point of $S$. Therefore $S$ has a boundary point.
 \end{proof}
 
-\paragraph{Exercise 4.7.16.} \textit{Show that the only subsets of $\mathbb{R}$ that are both open and closed are $\emptyset$ and $\mathbb{R}$.}
+\begin{lemma}
+	Any set that has a boundary cannot be both open and closed.
+\end{lemma}
 
 \begin{proof}
-%TODO everything
+	Let $E$ be a set that has a boundary point $b$. By the definition of a boundary point, $\forall \epsilon_1 > 0$ the interval $(b - \epsilon_1, b + \epsilon_1)$ contains at least one point in $E$ and one point not in $E$. But this means that there does not exist an $\epsilon_2 > 0$ such that every $(b - \epsilon_2, b + \epsilon_2) \subset E$. Therefore, by definition, $b$ is not an interior point and $E$ is not open
 \end{proof}
+
+By lemmas 1 and 2, any non-empty proper subset of $\R$ cannot be both open and closed, therefore only $\emptyset$ and $\R$ are both open and closed. 
+$\blacksquare$
 
 \end{document}
 
