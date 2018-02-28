@@ -53,13 +53,21 @@ Show that the set of points at which a function is bounded is open.
 	 Thus $(y - \halfepsilon, y + \halfepsilon) \subset (x_0 - \epsilon, x_0 + \epsilon)$. Since the conditions for $f$ to be bounded are true for all elements in $(x_0 - \epsilon, x_0 + \epsilon)$, they must also be true in $(y - \halfepsilon, y + \halfepsilon)$. Therefore all points in $(x_0 - \halfepsilon, x_0 + \halfepsilon)$ are in $S$, so $x_0$ is an interior point $\forall x_0 \in S$ and $S$ is open.
 \end{proof}
 
-\paragraph{Exercise 4.5.9.} A function $f: \R \rightarrow \R$ is said to be \textit{locally increasing} at a point $x_0$ if there is a $\delta > 0$ so that $f(x) < f(x_0) < f(y)$ whenever $x_0-\delta < x < x_0 < y < x_0+\delta.$ Show that a function that is locally increasing at every point in $\R$ must be increasing; that is, that $f(x) < f(y)$ for all $x < y$.
+\paragraph{Exercise 4.5.9.} A function $f: \R \rightarrow \R$ is said to be \textit{locally increasing} at a point $x_0$ if there is a $\delta > 0$ so that $f(x) < f(x_0) < f(y)$ whenever $x_0 - \delta < x < x_0 < y < x_0 + \delta.$ Show that a function that is locally increasing at every point in $\R$ must be increasing; that is, that $f(a) < f(b)$ for all $a < b$.
 
-% See note 81. See Cousin's Lemma. Take a family of alli intervals[c,d] for which f(c) < f(d)aand check that the hypothese of that lemma hold on any interval.
+% See note 81. See Cousin's Lemma. Take a family of alli intervals[c,d] for which f(c) < f(d) and check that the hypothese of that lemma holds on any interval.
 
+\def \ab {[a, b]}
+\def \halfdelta {\frac{\delta}{2}}
+\def \xneighborhood {[x - \halfdelta, x + \halfdelta]}
+\def \xinterval {[\ximinusone, x_i]}
+\def \ximinusone {x_{i-1}}
+\def \ci {c_i}
 \begin{proof}
-	%TODO work out details
-	One idea. If we look at the series x0 + delta0 = x1, xn = xn-1 + delta1, will either increase without bound, or will approach an accumulation point. If it approaches an accumulation,  + ..., then this will either increase without bound, or converge to a point of accumulation. If it converges, to a point of accumulation = a0. We know that the the function is locally increasing at a0, so we can start the process again. the points a0 + 
+	
+	Let us take the closed interval $\ab$ and function $f$ that is locally increasing over all real numbers. For all $x \in \ab$, there exists a $\delta > 0$ such that at $x$ the condition for $f$ locally increasing is satisfied. The interval $\xneighborhood$ has a length of $\delta$, so all subintervals have a length less than $\delta$. Consequently, we can find a Cousin cover of $\ab$ by creating the collection $C$ of all intervals $[c, d] \subset [x - \halfdelta, x + \halfdelta]$, (for all $x \in \ab$). 
+	
+	By Cousin's Lemma, there is a partition of $\ab$: $$a = x_0 < x_1 < \dots < x_n = b$$ such that $[\ximinusone, x_i] \in C$ for $i = 1, \dots, n$. At the center of each interval, $\ci$, the function $f$ is locally increasing within the neighborhood $(\ci - \delta, \ci + \delta)$ and $\ci - \delta < \ximinusone < x_i < \ci + \delta$. By the definition of locally increasing, we then know $\forall x^* \in \xinterval$ that $f(\ximinusone) < f(x^*) < f(x_i)$, so by induction $f(x_0) < f(x_n)$, and therefore $f(a) < f(b)$ for all $a < b$.
 \end{proof}
 
 \def \bacc {B_{acc}}
@@ -100,12 +108,10 @@ Yes.
 \end{lemma}
 
 \begin{proof}
-	Let $E$ be a set that has a boundary point $b$. By the definition of a boundary point, $\forall \epsilon_1 > 0$ the interval $(b - \epsilon_1, b + \epsilon_1)$ contains at least one point in $E$ and one point not in $E$. But this means that there does not exist an $\epsilon_2 > 0$ such that every $(b - \epsilon_2, b + \epsilon_2) \subset E$. Therefore, by definition, $b$ is not an interior point and $E$ is not open
+	Let $E$ be a set that has a boundary point $b$. By the definition of a boundary point, $\forall \epsilon_1 > 0$ such that the interval $(b - \epsilon_1, b + \epsilon_1)$ contains at least one point in $E$ and one point not in $E$. But this means that there does not exist an $\epsilon_2 > 0$ such that $(b - \epsilon_2, b + \epsilon_2) \subset E$. Therefore, by definition, $b$ is not an interior point and $E$ is not open
 \end{proof}
 
 By lemmas 1 and 2, any non-empty proper subset of $\R$ cannot be both open and closed, therefore only $\emptyset$ and $\R$ are both open and closed. 
 $\blacksquare$
 
 \end{document}
-
-
