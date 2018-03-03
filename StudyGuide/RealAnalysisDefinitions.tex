@@ -14,8 +14,27 @@
 
 % Highly-Reusable
 \def \R {\mathbb{R}}
+\def \N {\mathbb{N}}
 \def \epsilon {\varepsilon}
-\def \halfepsilon{\frac{\epsilon}{2}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\limittoinfy}[1]{\lim_{#1 \to \infty}}
+\def \limittoinfyn {\lim_{n \to \infty}}
+\def \limsup {\lim_{n \to \infty} \sup}
+\def \liminf {\lim_{n \to \infty} \inf}
+
+\newcommand{\sumofto}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\sumnto}[1]{\sumofto{n}{#1}}
+\newcommand{\sumoftoinfty}[1]{\sumofto{#1}{\infty}}
+\def \sumntoinfy {\sumnto{\infty}}
+
+\def \sn {s_n}
+\def \snplusone {s_{n+1}}
+\def \seqsn{ \set{\sn} }
+\def \tn {t_n}
+\def \xn {x_n}
+\def \an {a_n}
+\def \bn {b_n}
+\def \ak {a_k}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -36,486 +55,399 @@
 
 \section{Properties of the Real Numbers}
 \begin{definition}[Upper Bounds]
-	Definition 1.1: (Upper Bounds) Let E be a set of real numbers. A number M is said to be an upper bound for E if x ≤ M for all x ∈ E.
+	Let $E$ be a set of real numbers. A number $ M $ is said to be an \textit{upper bound} for $ E $ if $ x \leq M $ for all $ x \in E $.
 \end{definition}
 
 
 \begin{definition} [Lower Bounds]
-	Definition 1.2: (Lower Bounds) Let E be a set of real numbers. A number m is said to be a lower
-bound for E if m ≤ x for all x ∈ E
+	Let $ E $ be a set of real numbers. A number $ m $ is said to be a \textit{lower bound} for $ E $ if $ m \leq x $ for all $ x \in E $
 \end{definition}
 
 
 \begin{definition} [Maximum]
-	Definition 1.3: (Maximum) Let E be a set of real numbers. If there is a number M that belongs to E and is larger than every other member of E, then M is called the maximum of the set E and we write M = max E.
+	Let $ E $ be a set of real numbers. If there is a number $ M $ that belongs to $ E $ and is larger than every other member of $ E $, then $ M $ is called the \textit{maximum} of the set $ E $ and we write $ M = \max E $.
 \end{definition}
 
 
 \begin{definition} [Minimum]
-	Definition 1.4: (Minimum) Let E be a set of real numbers. If there is a number m that belongs to E and is smaller than every other member of E, then m is called the minimum of the set E and we write m = min E.
+	Let $ E $ be a set of real numbers. If there is a number $ m $ that belongs to $ E $ and is smaller than every other member of $ E $, then $ m $ is called the \textit{minimum} of the set $ E $ and we write $ m = \min E $.
 \end{definition}
 
 
 \setcounter{definition}{8}
 \begin{definition} [Least Upper Bound/Supremum]
-	Definition 1.9: (Least Upper Bound/Supremum) Let E be a set of real numbers that is bounded
-	above and nonempty. If M is the least of all the upper bounds, then M is said to be the least upper bound of E or the supremum of E and we write M = sup E.
+	Let $ E $ be a set of real numbers that is bounded above and nonempty. If $ M $ is the least of all the upper bounds, then $ M $ is said to be the \textit{least upper bound} of $ E $ or the \textit{supremum} of $ E $ and we write $ M = \sup E $.
 \end{definition}
 
 
 \begin{definition} [Greatest Lower Bound/Infimum]
-	Definition 1.10: (Greatest Lower Bound/Infimum) Let E be a set of real numbers that is bounded below and nonempty. If m is the greatest of all the lower bounds of E, then m is said to be the greatest lower bound of E or the infimum of E and we write M = inf E.
+	Let $ E $ be a set of real numbers that is bounded below and nonempty. If $ m $ is the greatest of all the lower bounds of $ E $, then $ m $ is said to be the \textit{greatest lower bound} of $ E $ or the \textit{infimum} of $ E $ and we write $ M = \inf E $.
 \end{definition}
 
 \setcounter{definition}{13}
 \begin{definition} [Dense Sets]
-	Definition 1.14: (Dense Sets) A set E of real numbers is said to be dense (or dense in R) if every interval (a, b) contains a point of E.
+	A set $ E $ of real numbers is said to be \textit{dense} (or \textit{dense in $\R$}) if every interval $ (a, b) $ contains a point of $ E $.
 \end{definition}
 
 \setcounter{definition}{15}
 \begin{definition} [Absolute Value]
-	Definition 1.16: (Absolute Value) For any real number x write
-	|x| = x if x ≥ 0
-	and
-	|x| = −x if x < 0 .
+	For any real number $ x $ write	
+	\[ |x| =
+	\begin{cases}
+		x & \quad \text{if } x \geq 0 \\
+		-x & \quad \text{if } x < 0
+	\end{cases}
+	\]
 \end{definition}
 
 \setcounter{definition}{17}
 \begin{definition} [Distance]
-	Definition 1.18: (Distance) The distance between two real numbers x and y is d(x, y) = |x − y|.
+	The \textit{distance} between two real numbers $ x $ and $ y $ is $d(x, y) = |x - y|$.
 \end{definition}
 
 \section{Sequences}
 
-\begin{definition} 
-	Definition 2.1: By a sequence of real numbers we mean a function f : IN → R.
+\begin{definition} [Sequence]
+	By a \textit{sequence} of real numbers we mean a function $ f : \N \rightarrow \R $.
 \end{definition}
 
 \setcounter{definition}{4}
 \begin{definition} [Countable]
-	Definition 2.5: (Countable) A nonempty set S of real numbers is said to be countable if there is a sequence of real numbers whose range is the set S
+	A nonempty set $ S $ of real numbers is said to be \textit{countable} if there is a sequence of real numbers whose range is the set $ S $.
 \end{definition}
 
 
 \begin{definition} [Limit of a Sequence]
-	Definition 2.6: (Limit of a Sequence) Let {sn} be a sequence of real numbers. We say that {sn}
-	converges to a number L and write
-	limn→∞
-	sn = L
+	Let $ \seqsn $ be a sequence of real numbers. We say that $ \seqsn $	\textit{converges} to a number $ L $ and write $$ \limittoinfyn \sn = L $$
 	or
-	sn → L as n → ∞
-	provided that for every number ε > 0 there is an integer N so that
-	|sn − L| < ε
-	whenever n ≥ N.
+	$$\sn \rightarrow  L \text{ as } n \rightarrow \infty$$
+	provided that for every number $ \epsilon > 0 $ there is an integer $ N $ so that $$ |\sn - L| < \epsilon $$ whenever $ n \geq N $.
 \end{definition}
 
 \setcounter{definition}{8}
 \begin{definition} [Divergence to $\infty$]
-	Definition 2.9: (Divergence to ∞) Let \{sn\} be a sequence of real numbers. We say that \{sn\} diverges
-	to ∞ and write
-	limn→∞
-	sn = ∞
-	or
-	sn → ∞ as n → ∞
-	provided that for every number M there is an integer N so that
-	sn ≥ M
-	whenever n ≥ N.
+	Let $ \seqsn $ be a sequence of real numbers. We say that $ \seqsn $ \textit{diverges} to $ \infty $ and write
+	$$ \limittoinfyn \sn = \infty $$ or	$$ \sn \rightarrow \infty \text{ as } n \rightarrow \infty $$	provided that for every number $ M $ there is an integer $ N $ so that $ \sn \geq M $
+	whenever $ n \geq N $.
 \end{definition}
 
 \setcounter{definition}{23}
 \begin{definition} [Increasing]
-	Definition 2.24: (Increasing) We say that a sequence {sn} is increasing if s1 < s2 < s3 < · · · < sn < sn+1 < . . . .	
+	We say that a sequence $ \seqsn $ is \textit{increasing} if $$ s_1 < s_2 < s_3 < \dots < \sn < s_{n+1} < \dots $$
 \end{definition}
 
 
 \begin{definition} [Decreasing]
-	Definition 2.25: (Decreasing) We say that a sequence {sn} is decreasing if	s1 > s2 > s3 > · · · > sn > sn+1 > . . . .
+	We say that a sequence $ \seqsn $ is \textit{decreasing} if	$$ s_1 > s_2 > s_3 > \dots > s_n > \snplusone > \dots $$
 \end{definition}
 
 
 \begin{definition} [Nondecreasing]
-	Definition 2.26: (Nondecreasing) We say that a sequence {sn} is nondecreasing if s1 ≤ s2 ≤ s3 ≤ · · · ≤ sn ≤ sn+1 ≤ . . . .
+	We say that a sequence $ \seqsn $ is \textit{nondecreasing} if $$ s_1 \leq s_2 \leq s_3 \leq \dots \leq \sn \leq \snplusone \leq \dots$$
 \end{definition}
 
 
 \begin{definition} [Nonincreasing]
-	Definition 2.27: (Nonincreasing) We say that a sequence {sn} is nonincreasing if s1 ≥ s2 ≥ s3 ≥ · · · ≥ sn ≥ sn+1 ≥ . . . .
+	We say that a sequence $ \seqsn $ is \textit{nonincreasing} if $$ s_1 \geq s_2 \geq s_3 \geq \dots \geq \sn \geq \snplusone \geq \dots $$
 \end{definition}
 
 \setcounter{definition}{36}
 \begin{definition} [Subsequences]
-	Definition 2.37: (Subsequences) Let
-	s1, s2, s3, s4, . . .
-	be any sequence. Then by a subsequence of this sequence we mean any sequence
-	sn1
-	, sn2
-	, sn3
-	, sn4
-	, . . .
-	where
-	n1 < n2 < n3 < . . .
-	is an increasing sequence of natural numbers.
+	Let $ s_1, s_2, s_, s_4, \dots $ be any sequence. Then by a \textit{subsequence} of this sequence we mean any sequence $$s_{n_1}, s_{n_2}, s_{n_3}, \dots$$ where $n_1 < n_2 < n_3 < \dots$ is an increasing sequence of natural numbers.
 \end{definition}
 
 \setcounter{definition}{43}
-\begin{definition} [Lim Sup]
-	Definition 2.44: (Lim Sup) A limit superior of a sequence {xn}, denoted as
-	lim sup
-	n→∞
-	xn,
-	is defined to be the infimum of all numbers β with the following property:
-	There is an integer N so that xn < β for all n ≥ N.
+\begin{definition} [Limit Superior]
+	A \textit{limit superior} of a sequence $\set{\xn}$, denoted as	$\limsup \xn$, is defined to be the infimum of all numbers $ \beta $ with the following property:
+	
+	There is an integer $ N $ so that $ \xn < \beta $ for all $ n \geq N $.
 \end{definition}
 
-
-\begin{definition} [Lim Inf]
-	Definition 2.45: (Lim Inf) A limit inferior of a sequence {xn}, denoted as
-	lim inf
-	n→∞
-	xn,
-	is defined to be the supremum of all numbers α with the following property:
-	There is an integer N so that α < xn for all n ≥ N
+\begin{definition} [Limit Inferior]
+	A \textit{limit inferior} of a sequence $\set{\xn}$, denoted as	$\liminf \xn$, is defined to be the supremum of all numbers $ \alpha $ with the following property:
+	
+	There is an integer $ N $ so that $ \alpha  < \xn$ for all $ n \geq N $
 \end{definition}
 
 \section{Infinite Sums}
 
 \setcounter{definition}{1}
 \begin{definition}
-	Definition 3.2: Let I be an infinite set and a a function a : I → R. Then we write
-	X
-	i∈I
-	ai = c
-	and say that the sum converges if for every ε > 0 there is a finite set I0 ⊂ I so that, for every finite set J,
-	I0 ⊂ J ⊂ I,
+	Let $ I $ be an infinite set and $ a $ a function $ a : I \rightarrow \R $. Then we write
+	$$\sum_{i \in I} a_i = c$$ 
+	and say that the sum \textit{converges} if for every $ \epsilon > 0 $ there is a finite set $ I_0 \subset I $ so that, for every finite set $ J $, $ I_0 \subset J \subset I $,
 	
-	X
-	i∈J
-	ai − c
-	
-	< ε.
-	A sum that does not converge is said to diverge.
+	$$\abs*{\sum_{i \in I} a_i - c} < \epsilon$$ 
+
+	A sum that does not converge is said to \textit{diverge}.
 \end{definition}
 
 \setcounter{definition}{5}
 \begin{definition}
-	Definition 3.6: Let {ak} be a sequence of real numbers. Then we write
-	X∞
-	k=1
-	ak = c
-	and say that the series converges if the sequence
-	sn =
-	Xn
-	k=1
-	ak
-	(called the sequence of partial sums of the series) converges to c. If the series does not converge it is said
-	to be divergent.
+	Let $ \set{\ak} $ be a sequence of real numbers. Then we write 
+		$$ \sumofto{k}{\infty} a_k = c $$
+	and say that the series \textit{converges} if the sequence 
+		$$\sn = \sumofto{k}{n} \ak$$
+	(called the sequence of partial sums of the series) converges to $ c $. If the series does not converge it is said to be $ divergent $.
 \end{definition}
 
-\setcounter{definition}{12}
+
+\setcounter{definition}{13}
 \begin{definition} [Cauchy Criterion for Convergence]
-	Definition 3.13: The series
-	X∞
-	k=1
-	ak
-	is said to satisfy the Cauchy criterion for convergence provided that for every ε > 0 there is an integer N
-	so that all of the finite sums
-	
-	Xm
-	k=n
-	ak
-	
-	< ε
-	for any N ≤ n < m < ∞.
+	The series $$ \sumoftoinfty{k} \ak $$ is said to satisfy the \textit{Cauchy criterion for convergence} provided that for every $ \epsilon > 0 $ there is an integer $ N $ so that all of the finite sums
+	$$\abs*{\sum_{k=n}^{m} \ak} < \epsilon$$ for any $ N \leq n < m < \infty $.
 \end{definition}
 
-\setcounter{definition}{14}
+
 \begin{definition} [Absolutely Convergent]
-	Definition 3.15: A series P∞
-	k=1 ak is said to be absolutely convergent if the related series P∞
-	k=1 |ak| converges.
+	A series $\sumoftoinfty{k} \ak$ is said to be \textit{absolutely convergent} if the related series $\sumoftoinfty{k} \abs{\ak}$ converges.
 \end{definition}
 
 
 \begin{definition} [Nonabsolutely Convergent]
-	Definition 3.16: A series P∞
-	k=1 ak is said to be nonabsolutely convergent if the series P∞
-	k=1 ak converges
-	but the series P∞
-	k=1 |ak| diverges.
-\end{definition}
-
-\setcounter{definition}{50}
-\begin{definition}
-	Definition 3.51: The series
-	X∞
-	k=0
-	ck
-	is called the formal product of the two series
-	X∞
-	k=0
-	ak and X∞
-	k=0
-	bk
-	provided that
-	ck =
-	X
-	k
-	i=0
-	aibk−i
-	.
+	A series $\sumoftoinfty{k} \ak$ is said to be \textit{nonabsolutely convergent} if the series $\sumoftoinfty{k} \ak$ converges but the series $\sumoftoinfty{k} \abs{\ak}$ diverges.
 \end{definition}
 
 \section{Sets of Real Numbers}
 
 \begin{definition} [Interior Point]
-	Definition 4.1: (Interior Point) Let E be a set of real numbers. Any point x that belongs to E is said
-	to be an interior point of E provided that some interval
-	(x − c, x + c) ⊂ E.
+	Let $ E $ be a set of real numbers. Any point $ x $ that belongs to $ E $ is said to be an \textit{interior point} of $ E $ provided that some interval $ (x - c, x + c) \subset E $.
 \end{definition}
 
 \setcounter{definition}{2}
 \begin{definition} [Isolated Point]
-	Definition 4.3: (Isolated Point) Let E be a set of real numbers. Any point x that belongs to E is said
-	to be an isolated point of E provided that for some interval (x − c, x + c)
-	(x − c, x + c) ∩ E = {x}.
+	Let $ E $ be a set of real numbers. Any point $ x $ that belongs to $ E $ is said to be an \textit{isolated point} of $ E $ provided that for some interval $(x - c, x + c)$
+		$$(x - c, x + c) \cap E = \set{x}.$$
 \end{definition}
 
 \setcounter{definition}{4}
 \begin{definition} [Accumulation Point]
-	Definition 4.5: (Accumulation Point) Let E be a set of real numbers. Any point x (not necessarily in
-	E) is said to be an accumulation point of E provided that for every c > 0 the intersection
-	(x − c, x + c) ∩ E
+	Let $ E $ be a set of real numbers. Any point $ x $ (not necessarily in	$ E $) is said to be an \textit{accumulation point} of $ E $ provided that for every $ c > 0 $ the intersection
+		$$ (x - c, x + c) \cap E $$
 	contains infinitely many points.
 \end{definition}
 
 \setcounter{definition}{6}
 \begin{definition} [Boundary Point]
-	Definition 4.7: (Boundary Point) Let E be a set of real numbers. Any point x (not necessarily in E)
-	is said to be a boundary point of E provided that every interval (x − c, x + c) contains at least one point of
-	E and also at least one point that does not belong to E.
+	Let $ E $ be a set of real numbers. Any point $ x $ (not necessarily in $ E $) is said to be a \textit{boundary point} of $ E $ provided that every interval $ (x - c, x + c) $ contains at least one point of $ E $ and also at least one point that does not belong to $ E $.
 \end{definition}
 
 \setcounter{definition}{8}
 \begin{definition} [Closed]
-	Definition 4.9: (Closed) Let E be a set of real numbers. The set E is said to be closed provided that
-	every accumulation point of E belongs to the set E.
+	Let $ E $ be a set of real numbers. The set $ E $ is said to be \textit{closed} provided that every accumulation point of $ E $ belongs to the set $ E $.
 \end{definition}
 
 \setcounter{definition}{10}
 \begin{definition} [Closure]
-	Definition 4.11: (Closure) Let E be any set of real numbers and let E′ denote the set of all accumulation
-	points of E. Then the set
-	E = E ∪ E
-	′
-	is called the closure of the set E.
+	Let $ E $ be any set of real numbers and let $ E′ $ denote the set of all accumulation points of $ E $. Then the set
+		$$ \overline{E} = E \cup E′'$$
+	is called the \textit{closure} of the set $ E $.
 \end{definition}
 
 
 \begin{definition} [Open]
-	Definition 4.12: (Open) Let E be a set of real numbers. Then E is said to be open if every point of E
-	is also an interior point of E.
+	Let $ E $ be a set of real numbers. Then $ E $ is said to be \textit{open} if every point of $ E $
+	is also an interior point of $ E $.
 \end{definition}
 
 \setcounter{definition}{13}
 \begin{definition} [Interior]
-	Definition 4.14: (Interior) Let E be any set of real numbers. Then the set
-	int(E)
-	denotes the set of all interior points of E and is called the interior of the set E.
+	Let $ E $ be any set of real numbers. Then the set int(E) denotes the set of all interior points of $ E $ and is called the \textit{interior} of the set $ E $.
 \end{definition}
 
 \setcounter{definition}{26}
 \begin{definition} [Cousin Cover]
-	Definition 4.27: (Cousin Cover) A collection C of closed intervals satisfying the hypothesis of Cousin’s
-	lemma is called a Cousin cover of [a, b].
+%	TODO: Add Cousin's Lemma
+	A collection $ \mathcal{C} $ of closed intervals satisfying the hypothesis of Cousin’s
+	lemma is called a \textit{Cousin cover} of $ [a, b] $.
 \end{definition}
 
-
+\def \scriptU {\mathcal{U}}
 \begin{definition} [Open Cover]
-	Definition 4.28: (Open Cover) Let A ⊂ R and let U be a family of open intervals. If for every x ∈ A
-	there exists at least one interval U ∈ U such that x ∈ U, then U is called an open cover of A.
+	Let $ A \subset \R $ and let $ \scriptU $ be a family of open intervals. If for every $ x \in A $ there exists at least one interval $ U \in \scriptU $ such that $ x \in U $, then $ U $ is called an \textit{open cover} of $ A $.
 \end{definition}
 
 
-\begin{definition} [Heine-Borel Property]
-	Definition 4.29: (Heine-Borel Property) A set A ⊂ R is said to have the Heine-Borel property if every
-	open cover of A can be reduced to a finite subcover. That is, if U is an open cover of A, then there exists a
-	finite subset of U, {U1, U2, . . . , Un} such that
-	A ⊂ U1 ∪ U2 ∪ · · · ∪ Un.
-\end{definition}
-
-\setcounter{definition}{33}
-\begin{definition} [Compact]
-	Definition 4.34: A set of real numbers E is said to be compact if it has any of the following equivalent
-	properties:
-	1. E is closed and bounded.
-	2. E has the Bolzano-Weierstrass property.
-	3. E has the Heine-Borel property
-\end{definition}
-
-\section{Continuous Functions}
-
-\begin{definition} [Limit - ε-δ Definition]
-	Definition 5.1: (Limit) Let f : E → R be a function with domain E and suppose that x0 is a point of
-	accumulation of E. Then we write
-	limx→x0
-	f(x) = L
-	if for every ε > 0 there is a δ > 0 so that
-	|f(x) − L| < ε
-	whenever x is a point of E differing from x0 and satisfying |x − x0| < δ.
-\end{definition}
-
-\setcounter{definition}{3}
-\begin{definition} [Limit - Sequential Definition]
-	Definition 5.4: (Limit) Let f : E → R be a function with domain E and suppose that x0 is a point of
-	accumulation of E. Then we write
-	limx→x0
-	f(x) = L
-	if for every sequence {en} of points of E with en 6= x0 and en → x0 as n → ∞,
-	limn→∞
-	f(en) = L.
-\end{definition}
-
-\setcounter{definition}{5}
-\begin{definition} [Limit - Mapping Definition]
-	Definition 5.6: (Limit) Let f : E → R be a function with domain E and suppose that x0 is a point of
-	accumulation of E. Then we write
-	limx→x0
-	f(x) = L
-	if for every open set V containing the point L there is an open set U containing the point x0 and every
-	point x 6= x0 of U that is in the domain of f is mapped into a point in V ; that is,
-	f : E ∩ U \ {x0} → V.
-\end{definition}
-
-
-\begin{definition} [Right-Hand Limit]
-	Definition 5.7: (Right-Hand Limit) Let f : E → R be a function with domain E and suppose that x0
-	is a point of accumulation of E ∩ (x0, ∞). Then we write
-	lim x→x0+
-	f(x) = L
-	if for every ε > 0 there is a δ > 0 so that
-	|f(x) − L| < ε
-	whenever x0 < x < x0 + δ and x ∈ E.
-\end{definition}
-
-
-\begin{definition} [Right-Hand Limit]
-	Definition 5.8: (Right-Hand Limit) Let f : E → R be a function with domain E and suppose that x0
-	is a point of accumulation of E ∩ (x0, ∞). Then we write
-	lim x→x0+
-	f(x) = L
-	if for every decreasing sequence {en} of points of E with en > x0 and en → x0 as n → ∞,
-	limn→∞
-	f(en) = L.
-\end{definition}
-
-
-\begin{definition} [Infinite Limit]
-	Definition 5.9: (Infinite Limit) Let f : E → R be a function with domain E and suppose that x0 is a
-	point of accumulation of E ∩ (x0, ∞). Then we write
-	lim x→x0+
-	f(x) = ∞
-	if for every M > 0 there is a δ > 0 so that f(x) ≥ M whenever
-	x0 < x < x0 + δ and x ∈ E.
-\end{definition}
-
-\setcounter{definition}{25}
-\begin{definition} [Lim Sup and Lim Inf]
-	Definition 5.26: (Lim Sup and Lim Inf) Let f : E → R be a function with domain E and suppose
-	that x0 is a point of accumulation of E. Then we write
-	lim sup
-	x→x0
-	f(x) = inf
-	δ>0
-	sup{f(x) : x ∈ (x0 − δ, x0 + δ) ∩ E, x 6= x0}
-	and
-	lim inf
-	x→x0
-	f(x) = sup
-	δ>0
-	inf{f(x) : x ∈ (x0 − δ, x0 + δ) ∩ E, x 6= x0}
-\end{definition}
-
-
-\begin{definition} [Intermediate Value Property]
-	Definition 5.27: (Intermediate Value Property) Let f be defined on an interval I. Suppose that for
-	each a, b ∈ I with f(a) 6= f(b), and for each d between f(a) and f(b), there exists c between a and b for
-	which f(c) = d. We then say that f has the intermediate value property (IVP) on I
-\end{definition}
-
-\setcounter{definition}{28}
-\begin{definition} [Continuous]
-	Definition 5.29: (Continuous) Let f be defined in a neighborhood of x0. The function f is continuous
-	at x0 provided limx→x0
-	f(x) = f(x0).
-\end{definition}
-
-\setcounter{definition}{31}
-\begin{definition} [$\epsilon - \delta$ Version]
-	Definition 5.32: (ε-δ Version) Let f be defined on a set A and let x0 be any point of A. The function
-	f is continuous at x0 provided for every ε > 0 there is a δ > 0 so that
-	|f(x) − f(x0)| < ε
-	for every x ∈ A for which |x − x0| < δ.
-\end{definition}
-
-
-\begin{definition} [Limit Version]
-	Definition 5.33: (Limit Version) Let f be defined on a set A and let x0 be any point of A. The function
-	f is continuous at x0 provided either that x0 is isolated in A or else that x0 is a point of accumulation of
-	that set and
-	limx→x0
-	f(x) = f(x0).
-\end{definition}
-
-
-\begin{definition} [Neighborhood Version]
-	Definition 5.34: (Neighborhood Version) Let f be defined on a set A and let x0 be any point of A.
-	The function f is continuous at x0 provided that for every open set V containing f(x0) there is an open set
-	U containing x0 so that f(U ∩ A) ⊂ V .
-\end{definition}
-
-
-\begin{definition} [Sequential Version]
-	Definition 5.35: (Sequential Version) Let f be defined on a set A and let x0 be any point of A. The
-	function f is continuous at x0 provided that for every sequence of points {xn} belonging to A and converging
-	to x0, it follows that f(xn) → f(x0).
-\end{definition}
-
-
-\begin{definition}
-	Definition 5.36: Let f : A → R. Then f is continuous (or continuous on A) if f is continuous at each
-	point of A.
-\end{definition}
-
-\setcounter{definition}{45}
-\begin{definition} [Uniformly Continuous]
-	Definition 5.46: (Uniformly Continuous) Let f be defined on a set A ⊂ R. We say that f is uniformly
-	continuous (on A) if for every ε > 0 there exists δ > 0 such that if x, y ∈ A and |x − y| < δ, then
-	|f(x) − f(y)| < ε.
-\end{definition}
-
-\setcounter{definition}{55}
-\begin{definition} [Nondecreasing]
-	Definition 5.56: (Nondecreasing) Let f be real valued on an interval I. If f(x1) ≤ f(x2) whenever x1
-	and x2 are points in I with x1 < x2, we say f is nondecreasing on I.
-\end{definition}
-
-
-\begin{definition} [Increasing]
-	Definition 5.57: (Increasing) Let f be real valued on an interval I. If the strict inequality f(x1) < f(x2)
-	holds whenever x1 and x2 are points in I with x1 < x2, we say f is increasing on I.
-\end{definition}
-
-
-\begin{definition} [Nonincreasing]
-	Definition 5.58: (Nonincreasing) Let f be real valued on an interval I. If f(x1) ≥ f(x2) whenever x1
-	and x2 are points in I with x1 < x2, we say f is nonincreasing on I.
-\end{definition}
-
-
-\begin{definition} [Decreasing]
-	Definition 5.59: (Decreasing) Let f be real valued on an interval I. If the strict inequality f(x1) > f(x2)
-	holds whenever x1 and x2 are points in I with x1 < x2, we say f is decreasing on I.
-\end{definition}
+%\begin{definition} [Heine-Borel Property]
+%	Definition 4.29: (Heine-Borel Property) A set A \subset R is said to have the Heine-Borel property if every
+%	open cover of A can be reduced to a finite subcover. That is, if U is an open cover of A, then there exists a
+%	finite subset of U, {U1, U2, \dots , Un} such that
+%	A \subset U1 \cup U2 \cup \dots \cup Un.
+%\end{definition}
+%
+%\setcounter{definition}{33}
+%\begin{definition} [Compact]
+%	Definition 4.34: A set of real numbers E is said to be compact if it has any of the following equivalent
+%	properties:
+%	1. E is closed and bounded.
+%	2. E has the Bolzano-Weierstrass property.
+%	3. E has the Heine-Borel property
+%\end{definition}
+%
+%\section{Continuous Functions}
+%
+%\begin{definition} [Limit - \epsilon-δ Definition]
+%	Definition 5.1: (Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0 is a point of
+%	accumulation of E. Then we write
+%	limx\rightarrowx0
+%	f(x) = L
+%	if for every \epsilon > 0 there is a δ > 0 so that
+%	|f(x) - L| < \epsilon
+%	whenever x is a point of E differing from x0 and satisfying |x - x0| < δ.
+%\end{definition}
+%
+%\setcounter{definition}{3}
+%\begin{definition} [Limit - Sequential Definition]
+%	Definition 5.4: (Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0 is a point of
+%	accumulation of E. Then we write
+%	limx\rightarrowx0
+%	f(x) = L
+%	if for every sequence {en} of points of E with en 6= x0 and en \rightarrow x0 as n \rightarrow \infty,
+%	limn\rightarrow\infty
+%	f(en) = L.
+%\end{definition}
+%
+%\setcounter{definition}{5}
+%\begin{definition} [Limit - Mapping Definition]
+%	Definition 5.6: (Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0 is a point of
+%	accumulation of E. Then we write
+%	limx\rightarrowx0
+%	f(x) = L
+%	if for every open set V containing the point L there is an open set U containing the point x0 and every
+%	point x 6= x0 of U that is in the domain of f is mapped into a point in V ; that is,
+%	f : E \cap U \ {x0} \rightarrow V.
+%\end{definition}
+%
+%
+%\begin{definition} [Right-Hand Limit]
+%	Definition 5.7: (Right-Hand Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0
+%	is a point of accumulation of E \cap (x0, \infty). Then we write
+%	lim x\rightarrowx0+
+%	f(x) = L
+%	if for every \epsilon > 0 there is a δ > 0 so that
+%	|f(x) - L| < \epsilon
+%	whenever x0 < x < x0 + δ and x \in E.
+%\end{definition}
+%
+%
+%\begin{definition} [Right-Hand Limit]
+%	Definition 5.8: (Right-Hand Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0
+%	is a point of accumulation of E \cap (x0, \infty). Then we write
+%	lim x\rightarrowx0+
+%	f(x) = L
+%	if for every decreasing sequence {en} of points of E with en > x0 and en \rightarrow x0 as n \rightarrow \infty,
+%	limn\rightarrow\infty
+%	f(en) = L.
+%\end{definition}
+%
+%
+%\begin{definition} [Infinite Limit]
+%	Definition 5.9: (Infinite Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0 is a
+%	point of accumulation of E \cap (x0, \infty). Then we write
+%	lim x\rightarrowx0+
+%	f(x) = \infty
+%	if for every M > 0 there is a δ > 0 so that f(x) \geq M whenever
+%	x0 < x < x0 + δ and x \in E.
+%\end{definition}
+%
+%\setcounter{definition}{25}
+%\begin{definition} [Lim Sup and Lim Inf]
+%	Definition 5.26: (Lim Sup and Lim Inf) Let f : E \rightarrow R be a function with domain E and suppose
+%	that x0 is a point of accumulation of E. Then we write
+%	lim sup
+%	x\rightarrowx0
+%	f(x) = inf
+%	δ>0
+%	sup{f(x) : x \in (x0 - δ, x0 + δ) \cap E, x 6= x0}
+%	and
+%	lim inf
+%	x\rightarrowx0
+%	f(x) = sup
+%	δ>0
+%	inf{f(x) : x \in (x0 - δ, x0 + δ) \cap E, x 6= x0}
+%\end{definition}
+%
+%
+%\begin{definition} [Intermediate Value Property]
+%	Definition 5.27: (Intermediate Value Property) Let f be defined on an interval I. Suppose that for
+%	each a, b \in I with f(a) 6= f(b), and for each d between f(a) and f(b), there exists c between a and b for
+%	which f(c) = d. We then say that f has the intermediate value property (IVP) on I
+%\end{definition}
+%
+%\setcounter{definition}{28}
+%\begin{definition} [Continuous]
+%	Definition 5.29: (Continuous) Let f be defined in a neighborhood of x0. The function f is continuous
+%	at x0 provided limx\rightarrowx0
+%	f(x) = f(x0).
+%\end{definition}
+%
+%\setcounter{definition}{31}
+%\begin{definition} [$\epsilon - \delta$ Version]
+%	Definition 5.32: (\epsilon-δ Version) Let f be defined on a set A and let x0 be any point of A. The function
+%	f is continuous at x0 provided for every \epsilon > 0 there is a δ > 0 so that
+%	|f(x) - f(x0)| < \epsilon
+%	for every x \in A for which |x - x0| < δ.
+%\end{definition}
+%
+%
+%\begin{definition} [Limit Version]
+%	Definition 5.33: (Limit Version) Let f be defined on a set A and let x0 be any point of A. The function
+%	f is continuous at x0 provided either that x0 is isolated in A or else that x0 is a point of accumulation of
+%	that set and
+%	limx\rightarrowx0
+%	f(x) = f(x0).
+%\end{definition}
+%
+%
+%\begin{definition} [Neighborhood Version]
+%	Definition 5.34: (Neighborhood Version) Let f be defined on a set A and let x0 be any point of A.
+%	The function f is continuous at x0 provided that for every open set V containing f(x0) there is an open set
+%	U containing x0 so that f(U \cap A) \subset V .
+%\end{definition}
+%
+%
+%\begin{definition} [Sequential Version]
+%	Definition 5.35: (Sequential Version) Let f be defined on a set A and let x0 be any point of A. The
+%	function f is continuous at x0 provided that for every sequence of points {xn} belonging to A and converging
+%	to x0, it follows that f(xn) \rightarrow f(x0).
+%\end{definition}
+%
+%
+%\begin{definition}
+%	Definition 5.36: Let f : A \rightarrow R. Then f is continuous (or continuous on A) if f is continuous at each
+%	point of A.
+%\end{definition}
+%
+%\setcounter{definition}{45}
+%\begin{definition} [Uniformly Continuous]
+%	Definition 5.46: (Uniformly Continuous) Let f be defined on a set A \subset R. We say that f is uniformly
+%	continuous (on A) if for every \epsilon > 0 there exists δ > 0 such that if x, y \in A and |x - y| < δ, then
+%	|f(x) - f(y)| < \epsilon.
+%\end{definition}
+%
+%\setcounter{definition}{55}
+%\begin{definition} [Nondecreasing]
+%	Definition 5.56: (Nondecreasing) Let f be real valued on an interval I. If f(x1) \leq f(x2) whenever x1
+%	and x2 are points in I with x1 < x2, we say f is nondecreasing on I.
+%\end{definition}
+%
+%
+%\begin{definition} [Increasing]
+%	Definition 5.57: (Increasing) Let f be real valued on an interval I. If the strict inequality f(x1) < f(x2)
+%	holds whenever x1 and x2 are points in I with x1 < x2, we say f is increasing on I.
+%\end{definition}
+%
+%
+%\begin{definition} [Nonincreasing]
+%	Definition 5.58: (Nonincreasing) Let f be real valued on an interval I. If f(x1) \geq f(x2) whenever x1
+%	and x2 are points in I with x1 < x2, we say f is nonincreasing on I.
+%\end{definition}
+%
+%
+%\begin{definition} [Decreasing]
+%	Definition 5.59: (Decreasing) Let f be real valued on an interval I. If the strict inequality f(x1) > f(x2)
+%	holds whenever x1 and x2 are points in I with x1 < x2, we say f is decreasing on I.
+%\end{definition}
 
 
 \end{document}
