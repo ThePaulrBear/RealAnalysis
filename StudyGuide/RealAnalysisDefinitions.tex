@@ -22,6 +22,9 @@
 \def \limsup {\lim_{n \to \infty} \sup}
 \def \liminf {\lim_{n \to \infty} \inf}
 
+\def \limsupX0 {\underset{x \to x_0}{\lim \sup}}
+\def \liminfX0 {\underset{x \to x_0}{\lim \inf}}
+
 \newcommand{\sumofto}[2]{\sum_{#1=1}^{#2}}
 \newcommand{\sumnto}[1]{\sumofto{n}{#1}}
 \newcommand{\sumoftoinfty}[1]{\sumofto{#1}{\infty}}
@@ -33,8 +36,12 @@
 \def \tn {t_n}
 \def \xn {x_n}
 \def \an {a_n}
+\def \en {e_n}
 \def \bn {b_n}
 \def \ak {a_k}
+
+\def \scriptC {\mathcal{C}}
+\def \scriptU {\mathcal{U}}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -258,196 +265,166 @@
 \setcounter{definition}{26}
 \begin{definition} [Cousin Cover]
 %	TODO: Add Cousin's Lemma
-	A collection $ \mathcal{C} $ of closed intervals satisfying the hypothesis of Cousin’s
+	A collection $ \scriptC $ of closed intervals satisfying the hypothesis of Cousin’s
 	lemma is called a \textit{Cousin cover} of $ [a, b] $.
 \end{definition}
 
-\def \scriptU {\mathcal{U}}
 \begin{definition} [Open Cover]
-	Let $ A \subset \R $ and let $ \scriptU $ be a family of open intervals. If for every $ x \in A $ there exists at least one interval $ U \in \scriptU $ such that $ x \in U $, then $ U $ is called an \textit{open cover} of $ A $.
+	Let $ A \subset \R $ and let $ \scriptU $ be a family of open intervals. If for every $ x \in A $ there exists at least one interval $ U \in \scriptU $ such that $ x \in U $, then $ \scriptU $ is called an \textit{open cover} of $ A $.
 \end{definition}
 
 
-%\begin{definition} [Heine-Borel Property]
-%	Definition 4.29: (Heine-Borel Property) A set A \subset R is said to have the Heine-Borel property if every
-%	open cover of A can be reduced to a finite subcover. That is, if U is an open cover of A, then there exists a
-%	finite subset of U, {U1, U2, \dots , Un} such that
-%	A \subset U1 \cup U2 \cup \dots \cup Un.
-%\end{definition}
-%
-%\setcounter{definition}{33}
-%\begin{definition} [Compact]
-%	Definition 4.34: A set of real numbers E is said to be compact if it has any of the following equivalent
-%	properties:
-%	1. E is closed and bounded.
-%	2. E has the Bolzano-Weierstrass property.
-%	3. E has the Heine-Borel property
-%\end{definition}
-%
-%\section{Continuous Functions}
-%
-%\begin{definition} [Limit - \epsilon-δ Definition]
-%	Definition 5.1: (Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0 is a point of
-%	accumulation of E. Then we write
-%	limx\rightarrowx0
-%	f(x) = L
-%	if for every \epsilon > 0 there is a δ > 0 so that
-%	|f(x) - L| < \epsilon
-%	whenever x is a point of E differing from x0 and satisfying |x - x0| < δ.
-%\end{definition}
-%
-%\setcounter{definition}{3}
-%\begin{definition} [Limit - Sequential Definition]
-%	Definition 5.4: (Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0 is a point of
-%	accumulation of E. Then we write
-%	limx\rightarrowx0
-%	f(x) = L
-%	if for every sequence {en} of points of E with en 6= x0 and en \rightarrow x0 as n \rightarrow \infty,
-%	limn\rightarrow\infty
-%	f(en) = L.
-%\end{definition}
-%
-%\setcounter{definition}{5}
-%\begin{definition} [Limit - Mapping Definition]
-%	Definition 5.6: (Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0 is a point of
-%	accumulation of E. Then we write
-%	limx\rightarrowx0
-%	f(x) = L
-%	if for every open set V containing the point L there is an open set U containing the point x0 and every
-%	point x 6= x0 of U that is in the domain of f is mapped into a point in V ; that is,
-%	f : E \cap U \ {x0} \rightarrow V.
-%\end{definition}
-%
-%
-%\begin{definition} [Right-Hand Limit]
-%	Definition 5.7: (Right-Hand Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0
-%	is a point of accumulation of E \cap (x0, \infty). Then we write
-%	lim x\rightarrowx0+
-%	f(x) = L
-%	if for every \epsilon > 0 there is a δ > 0 so that
-%	|f(x) - L| < \epsilon
-%	whenever x0 < x < x0 + δ and x \in E.
-%\end{definition}
-%
-%
-%\begin{definition} [Right-Hand Limit]
-%	Definition 5.8: (Right-Hand Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0
-%	is a point of accumulation of E \cap (x0, \infty). Then we write
-%	lim x\rightarrowx0+
-%	f(x) = L
-%	if for every decreasing sequence {en} of points of E with en > x0 and en \rightarrow x0 as n \rightarrow \infty,
-%	limn\rightarrow\infty
-%	f(en) = L.
-%\end{definition}
-%
-%
-%\begin{definition} [Infinite Limit]
-%	Definition 5.9: (Infinite Limit) Let f : E \rightarrow R be a function with domain E and suppose that x0 is a
-%	point of accumulation of E \cap (x0, \infty). Then we write
-%	lim x\rightarrowx0+
-%	f(x) = \infty
-%	if for every M > 0 there is a δ > 0 so that f(x) \geq M whenever
-%	x0 < x < x0 + δ and x \in E.
-%\end{definition}
-%
-%\setcounter{definition}{25}
-%\begin{definition} [Lim Sup and Lim Inf]
-%	Definition 5.26: (Lim Sup and Lim Inf) Let f : E \rightarrow R be a function with domain E and suppose
-%	that x0 is a point of accumulation of E. Then we write
-%	lim sup
-%	x\rightarrowx0
-%	f(x) = inf
-%	δ>0
-%	sup{f(x) : x \in (x0 - δ, x0 + δ) \cap E, x 6= x0}
-%	and
-%	lim inf
-%	x\rightarrowx0
-%	f(x) = sup
-%	δ>0
-%	inf{f(x) : x \in (x0 - δ, x0 + δ) \cap E, x 6= x0}
-%\end{definition}
-%
-%
-%\begin{definition} [Intermediate Value Property]
-%	Definition 5.27: (Intermediate Value Property) Let f be defined on an interval I. Suppose that for
-%	each a, b \in I with f(a) 6= f(b), and for each d between f(a) and f(b), there exists c between a and b for
-%	which f(c) = d. We then say that f has the intermediate value property (IVP) on I
-%\end{definition}
-%
-%\setcounter{definition}{28}
-%\begin{definition} [Continuous]
-%	Definition 5.29: (Continuous) Let f be defined in a neighborhood of x0. The function f is continuous
-%	at x0 provided limx\rightarrowx0
-%	f(x) = f(x0).
-%\end{definition}
-%
-%\setcounter{definition}{31}
-%\begin{definition} [$\epsilon - \delta$ Version]
-%	Definition 5.32: (\epsilon-δ Version) Let f be defined on a set A and let x0 be any point of A. The function
-%	f is continuous at x0 provided for every \epsilon > 0 there is a δ > 0 so that
-%	|f(x) - f(x0)| < \epsilon
-%	for every x \in A for which |x - x0| < δ.
-%\end{definition}
-%
-%
-%\begin{definition} [Limit Version]
-%	Definition 5.33: (Limit Version) Let f be defined on a set A and let x0 be any point of A. The function
-%	f is continuous at x0 provided either that x0 is isolated in A or else that x0 is a point of accumulation of
+\begin{definition} [Heine-Borel Property]
+	A set $ A \subset \R $ is said to have the \textit{Heine-Borel property} if every open cover of $ A $ can be reduced to a finite subcover. That is, if $ \scriptU $ is an open cover of $ A $, then there exists a
+	finite subset of $ \scriptU $, $ {U1, U2, \dots , Un} $ such that  
+	$$ A \subset U_1 \cup U_2 \cup \dots \cup U_n.$$
+\end{definition}
+
+\setcounter{definition}{33}
+\begin{definition} [Compact]
+	A set of real numbers $ E $ is said to be \textit{compact} if it has any of the following equivalent
+	properties:
+
+	\begin{enumerate}
+		\item $ E $ is closed and bounded.
+		\item $ E $ has the Bolzano-Weierstrass property.
+		\item $ E $ has the Heine-Borel property.
+	\end{enumerate}
+	
+\end{definition}
+
+
+\section{Continuous Functions}
+
+\def \limToX0 {\lim_{x \rightarrow x_0}}
+\begin{definition} [Limit --- $ \epsilon-\delta $ Definition]
+	Definition 5.1: (Limit) Let $ f :  E  \rightarrow \R $ be a function with domain $ E $ and suppose that $ x_0 $ is a point of accumulation of $ E $. Then we write $$ \lim_{x \rightarrow x_0} f(x) = L$$	if for every $ \epsilon > 0 $ there is a $ \delta > 0 $ so that
+		$$ |f(x) - L| < \epsilon $$
+	whenever x is a point of $ E $ differing from $ x_0 $ and satisfying $ |x - x_0| < \delta $.
+\end{definition}
+
+\setcounter{definition}{3}
+\begin{definition} [Limit --- Sequential Definition]
+	Let $ f : E \rightarrow \R $ be a function with domain $E$ and suppose that $ x_0 $ is a point of accumulation of $ E $. Then we write $$ \limToX0 f(x) = L $$ if for every sequence $ \set{\en} $ of points of $ E $ with $ \en \ne x_0$ and $ \en \rightarrow x_0 $ as $ n \rightarrow \infty $,
+	$$ \limittoinfyn f(\en) = L$$
+\end{definition}
+
+\setcounter{definition}{5}
+\begin{definition} [Limit --- Mapping Definition]
+	Let $ f : E \rightarrow \R $ be a function with domain $ E $ and suppose that $ x_0 $ is a point of accumulation of $ E $. Then we write $$ \limToX0 f(x) = L $$ if for every open set $ V $ containing the point $ L $ there is an open set $ U $ containing the point $ x_0 $ and every
+	point $ x \ne x_0 $ of $ U $ that is in the domain of $ f $ is mapped into a point in $ V $; that is,
+	$$ f : E \cap U \ {x_0} \rightarrow V $$
+\end{definition}
+
+\def \limToX0FromRight {\lim_{x \rightarrow x_0+}}
+\begin{definition} [Right-Hand Limit --- $ \epsilon-\delta $ Definition]
+	Let $ f : E \rightarrow \R $ be a function with domain $ E $ and suppose that $ x_0 $
+	is a point of accumulation of $ E \cap (x_0, \infty) $. Then we write 
+		$$ \limToX0FromRight f(x) = L $$
+	if for every $ \epsilon > 0 $ there is a $ \delta > 0 $ so that $ |f(x) - L| < \epsilon $ whenever $ x_0 < x < x_0 + \delta $ and $ x \in E $.
+\end{definition}
+
+
+\begin{definition} [Right-Hand Limit --- Sequential Definition]
+	Let $ f : E \rightarrow \R $ be a function with domain $ E $ and suppose that $ x_0 $ is a point of accumulation of $ E \cap (x_0, \infty) $. Then we write $$ \limToX0FromRight f(x) = L $$ if for every decreasing sequence $\set{\en}$ of points of $ E $ with $ \en > x_0 $ and $ \en \rightarrow x_0 $ as $ n \rightarrow \infty $, 
+		$$\limittoinfyn f(\en) = L $$.
+\end{definition}
+
+
+\begin{definition} [Infinite Limit]
+	Let $ f : E \rightarrow \R $ be a function with domain $E$ and suppose that $ x_0 $ is a point of accumulation of $ E \cap (x_0, \infty) $. Then we write
+		$$ \limToX0FromRight f(x) = \infty$$ 
+	if for every $ M > 0 $ there is a $ \delta > 0 $ so that $ f(x) \geq M $ whenever $ x_0 < x < x_0 + \delta $ and $ x \in E $.
+\end{definition}
+
+
+\setcounter{definition}{25}
+\begin{definition} [Limit Superior and Limit Inferior]
+	Let $ f : E \rightarrow \R $ be a function with domain $E$ and suppose that $ x_0 $ is a point of accumulation of $ E $. Then we write 
+		$$ \limsupX0 f(x) = \underset{\delta>0}{\inf} \sup \set{f(x) : x \in (x_0 - \delta, x_0 + \delta) \cap E, x \ne x_0}$$
+	and
+		$$ \liminfX0 f(x) = \underset{\delta>0}{\sup} \inf \set{f(x) : x \in (x_0 - \delta, x_0 + \delta) \cap E, x \ne x_0}$$
+\end{definition}
+
+
+\begin{definition} [Intermediate Value Property]
+	Let $ f $ be defined on an interval $ I $. Suppose that for	each $ a, b \in I $ with $ f(a) \ne f(b) $, and for each $ d $ between $ f(a) $ and $ f(b) $, there exists $ c $ between $ a $ and $ b $ for which $ f(c) = d $. We then say that $ f $ has the \textit{intermediate value property} (IVP) on $ I $.
+\end{definition}
+
+\setcounter{definition}{28}
+\begin{definition} [Continuous at $ x_0 $]
+%	Definition 5.29: (Continuous) Let f be defined in a neighborhood of x_0. The function f is continuous
+%	at x_0 provided limx\rightarrowx_0
+%	f(x) = f(x_0).
+\end{definition}
+
+\setcounter{definition}{31}
+\begin{definition} [$\epsilon - \delta$ Version]
+%	Definition 5.32: (\epsilon-\delta Version) Let f be defined on a set A and let x_0 be any point of A. The function
+%	f is continuous at x_0 provided for every \epsilon > 0 there is a \delta > 0 so that
+%	|f(x) - f(x_0)| < \epsilon
+%	for every x \in A for which |x - x_0| < \delta.
+\end{definition}
+
+
+\begin{definition} [Limit Version]
+%	Definition 5.33: (Limit Version) Let f be defined on a set A and let x_0 be any point of A. The function
+%	f is continuous at x_0 provided either that x_0 is isolated in A or else that x_0 is a point of accumulation of
 %	that set and
-%	limx\rightarrowx0
-%	f(x) = f(x0).
-%\end{definition}
-%
-%
-%\begin{definition} [Neighborhood Version]
-%	Definition 5.34: (Neighborhood Version) Let f be defined on a set A and let x0 be any point of A.
-%	The function f is continuous at x0 provided that for every open set V containing f(x0) there is an open set
-%	U containing x0 so that f(U \cap A) \subset V .
-%\end{definition}
-%
-%
-%\begin{definition} [Sequential Version]
-%	Definition 5.35: (Sequential Version) Let f be defined on a set A and let x0 be any point of A. The
-%	function f is continuous at x0 provided that for every sequence of points {xn} belonging to A and converging
-%	to x0, it follows that f(xn) \rightarrow f(x0).
-%\end{definition}
-%
-%
-%\begin{definition}
+%	limx\rightarrowx_0
+%	f(x) = f(x_0).
+\end{definition}
+
+
+\begin{definition} [Neighborhood Version]
+%	Definition 5.34: (Neighborhood Version) Let f be defined on a set A and let x_0 be any point of A.
+%	The function f is continuous at x_0 provided that for every open set V containing f(x_0) there is an open set
+%	U containing x_0 so that f(U \cap A) \subset V .
+\end{definition}
+
+
+\begin{definition} [Sequential Version]
+%	Definition 5.35: (Sequential Version) Let f be defined on a set A and let x_0 be any point of A. The
+%	function f is continuous at x_0 provided that for every sequence of points {xn} belonging to A and converging
+%	to x_0, it follows that f(xn) \rightarrow f(x_0).
+\end{definition}
+
+
+\begin{definition} [Continuous Function]
 %	Definition 5.36: Let f : A \rightarrow R. Then f is continuous (or continuous on A) if f is continuous at each
 %	point of A.
-%\end{definition}
-%
-%\setcounter{definition}{45}
-%\begin{definition} [Uniformly Continuous]
+\end{definition}
+
+\setcounter{definition}{45}
+\begin{definition} [Uniformly Continuous]
 %	Definition 5.46: (Uniformly Continuous) Let f be defined on a set A \subset R. We say that f is uniformly
-%	continuous (on A) if for every \epsilon > 0 there exists δ > 0 such that if x, y \in A and |x - y| < δ, then
+%	continuous (on A) if for every \epsilon > 0 there exists \delta > 0 such that if x, y \in A and |x - y| < \delta, then
 %	|f(x) - f(y)| < \epsilon.
-%\end{definition}
-%
-%\setcounter{definition}{55}
-%\begin{definition} [Nondecreasing]
+\end{definition}
+
+\setcounter{definition}{55}
+\begin{definition} [Nondecreasing]
 %	Definition 5.56: (Nondecreasing) Let f be real valued on an interval I. If f(x1) \leq f(x2) whenever x1
 %	and x2 are points in I with x1 < x2, we say f is nondecreasing on I.
-%\end{definition}
-%
-%
-%\begin{definition} [Increasing]
+\end{definition}
+
+
+\begin{definition} [Increasing]
 %	Definition 5.57: (Increasing) Let f be real valued on an interval I. If the strict inequality f(x1) < f(x2)
 %	holds whenever x1 and x2 are points in I with x1 < x2, we say f is increasing on I.
-%\end{definition}
-%
-%
-%\begin{definition} [Nonincreasing]
+\end{definition}
+
+
+\begin{definition} [Nonincreasing]
 %	Definition 5.58: (Nonincreasing) Let f be real valued on an interval I. If f(x1) \geq f(x2) whenever x1
 %	and x2 are points in I with x1 < x2, we say f is nonincreasing on I.
-%\end{definition}
-%
-%
-%\begin{definition} [Decreasing]
+\end{definition}
+
+
+\begin{definition} [Decreasing]
 %	Definition 5.59: (Decreasing) Let f be real valued on an interval I. If the strict inequality f(x1) > f(x2)
 %	holds whenever x1 and x2 are points in I with x1 < x2, we say f is decreasing on I.
-%\end{definition}
+\end{definition}
 
 
 \end{document}
