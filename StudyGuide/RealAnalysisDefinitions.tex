@@ -22,8 +22,10 @@
 \def \limsup {\lim_{n \to \infty} \sup}
 \def \liminf {\lim_{n \to \infty} \inf}
 
+\def \limitToXZero {\lim_{x \to x_0}}
 \def \limsupX0 {\underset{x \to x_0}{\lim \sup}}
 \def \liminfX0 {\underset{x \to x_0}{\lim \inf}}
+\def \limToX0FromRight {\lim_{x \to x_0+}}
 
 \newcommand{\sumofto}[2]{\sum_{#1=1}^{#2}}
 \newcommand{\sumnto}[1]{\sumofto{n}{#1}}
@@ -296,7 +298,6 @@
 
 \section{Continuous Functions}
 
-\def \limToX0 {\lim_{x \rightarrow x_0}}
 \begin{definition} [Limit --- $ \epsilon-\delta $ Definition]
 	Definition 5.1: (Limit) Let $ f :  E  \rightarrow \R $ be a function with domain $ E $ and suppose that $ x_0 $ is a point of accumulation of $ E $. Then we write $$ \lim_{x \rightarrow x_0} f(x) = L$$	if for every $ \epsilon > 0 $ there is a $ \delta > 0 $ so that
 		$$ |f(x) - L| < \epsilon $$
@@ -305,18 +306,17 @@
 
 \setcounter{definition}{3}
 \begin{definition} [Limit --- Sequential Definition]
-	Let $ f : E \rightarrow \R $ be a function with domain $E$ and suppose that $ x_0 $ is a point of accumulation of $ E $. Then we write $$ \limToX0 f(x) = L $$ if for every sequence $ \set{\en} $ of points of $ E $ with $ \en \ne x_0$ and $ \en \rightarrow x_0 $ as $ n \rightarrow \infty $,
+	Let $ f : E \rightarrow \R $ be a function with domain $E$ and suppose that $ x_0 $ is a point of accumulation of $ E $. Then we write $$ \limitToXZero f(x) = L $$ if for every sequence $ \set{\en} $ of points of $ E $ with $ \en \ne x_0$ and $ \en \rightarrow x_0 $ as $ n \rightarrow \infty $,
 	$$ \limittoinfyn f(\en) = L$$
 \end{definition}
 
 \setcounter{definition}{5}
 \begin{definition} [Limit --- Mapping Definition]
-	Let $ f : E \rightarrow \R $ be a function with domain $ E $ and suppose that $ x_0 $ is a point of accumulation of $ E $. Then we write $$ \limToX0 f(x) = L $$ if for every open set $ V $ containing the point $ L $ there is an open set $ U $ containing the point $ x_0 $ and every
+	Let $ f : E \rightarrow \R $ be a function with domain $ E $ and suppose that $ x_0 $ is a point of accumulation of $ E $. Then we write $$ \limitToXZero f(x) = L $$ if for every open set $ V $ containing the point $ L $ there is an open set $ U $ containing the point $ x_0 $ and every
 	point $ x \ne x_0 $ of $ U $ that is in the domain of $ f $ is mapped into a point in $ V $; that is,
 	$$ f : E \cap U \ {x_0} \rightarrow V $$
 \end{definition}
 
-\def \limToX0FromRight {\lim_{x \rightarrow x_0+}}
 \begin{definition} [Right-Hand Limit --- $ \epsilon-\delta $ Definition]
 	Let $ f : E \rightarrow \R $ be a function with domain $ E $ and suppose that $ x_0 $
 	is a point of accumulation of $ E \cap (x_0, \infty) $. Then we write 
@@ -352,78 +352,65 @@
 \end{definition}
 
 \setcounter{definition}{28}
-\begin{definition} [Continuous at $ x_0 $]
-%	Definition 5.29: (Continuous) Let f be defined in a neighborhood of x_0. The function f is continuous
-%	at x_0 provided limx\rightarrowx_0
-%	f(x) = f(x_0).
+\begin{definition} [Continuous on neighborhood at $ x_0 $  --- Limit Version]
+	Let f be defined in a neighborhood of $ x_0 $. The function $ f $ is \textit{continuous
+	at $ x_0 $} provided $$ \limitToXZero f(x) = f(x_0) $$
 \end{definition}
 
 \setcounter{definition}{31}
-\begin{definition} [$\epsilon - \delta$ Version]
-%	Definition 5.32: (\epsilon-\delta Version) Let f be defined on a set A and let x_0 be any point of A. The function
-%	f is continuous at x_0 provided for every \epsilon > 0 there is a \delta > 0 so that
-%	|f(x) - f(x_0)| < \epsilon
-%	for every x \in A for which |x - x_0| < \delta.
+\begin{definition} [Continuous function on a set at $ x_0 $ --- $\epsilon - \delta$ Version]
+	Let $ f $ be defined on a set $ A $ and let $ x_0 $ be any point of $ A $. The function
+	$ f $ is \textit{continuous at $ x_0 $} provided for every $ \epsilon > 0 $ there is a $ \delta > 0 $ so that
+	$ |f(x) - f(x_0)| < \epsilon $
+	for every $ x \in A $ for which $ |x - x_0| < \delta $.
 \end{definition}
 
 
-\begin{definition} [Limit Version]
-%	Definition 5.33: (Limit Version) Let f be defined on a set A and let x_0 be any point of A. The function
-%	f is continuous at x_0 provided either that x_0 is isolated in A or else that x_0 is a point of accumulation of
-%	that set and
-%	limx\rightarrowx_0
-%	f(x) = f(x_0).
+\begin{definition} [Continuous function on a set at $ x_0 $ --- Limit Version]
+	Let $ f $ be defined on a set $ A $ and let $ x_0 $ be any point of $ A $. The function
+	$ f $ is \textit{continuous at $ x_0 $} provided either that $ x_0 $ is isolated in $ A $ or else that $ x_0 $ is a point of accumulation of that set and $$ \limitToXZero f(x) = f(x_0) $$
 \end{definition}
 
 
-\begin{definition} [Neighborhood Version]
-%	Definition 5.34: (Neighborhood Version) Let f be defined on a set A and let x_0 be any point of A.
-%	The function f is continuous at x_0 provided that for every open set V containing f(x_0) there is an open set
-%	U containing x_0 so that f(U \cap A) \subset V .
+\begin{definition} [Continuous function on a set at $ x_0 $ --- Neighborhood Version]
+	Let $ f $ be defined on a set $ A $ and let $ x_0 $ be any point of $ A $. The function $ f $ is \textit{continuous at $ x_0 $} provided that for every open set $ V $ containing $ f(x_0) $ there is an open set $ U $ containing $ x_0 $ so that $ f(U \cap A) \subset V $.
 \end{definition}
 
 
 \begin{definition} [Sequential Version]
-%	Definition 5.35: (Sequential Version) Let f be defined on a set A and let x_0 be any point of A. The
-%	function f is continuous at x_0 provided that for every sequence of points {xn} belonging to A and converging
-%	to x_0, it follows that f(xn) \rightarrow f(x_0).
+	Let $ f $ be defined on a set $ A $ and let $ x_0 $ be any point of $ A $. The function $ f $ is \textit{continuous at $ x_0 $} provided that for every sequence of points $ \set{\xn} $ belonging to $ A $ and converging to $ x_0 $, it follows that $ f(\xn) \rightarrow f(x_0) $.
 \end{definition}
 
 
 \begin{definition} [Continuous Function]
-%	Definition 5.36: Let f : A \rightarrow R. Then f is continuous (or continuous on A) if f is continuous at each
-%	point of A.
+	Let $ f : A \rightarrow \R $. Then f is \textit{continuous} (or \textit{continuous on $ A $}) if f is continuous at each point of $ A $.
 \end{definition}
 
 \setcounter{definition}{45}
 \begin{definition} [Uniformly Continuous]
-%	Definition 5.46: (Uniformly Continuous) Let f be defined on a set A \subset R. We say that f is uniformly
-%	continuous (on A) if for every \epsilon > 0 there exists \delta > 0 such that if x, y \in A and |x - y| < \delta, then
-%	|f(x) - f(y)| < \epsilon.
+	Let $ f $ be defined on a set $ A \subset \R $. We say that $ f $ is \textit{uniformly
+	continuous} (on A) if for every $ \epsilon > 0 $ there exists $ \delta > 0 $ such that if $ x, y \in A $ and $ |x - y| < \delta $, then $ |f(x) - f(y)| < \epsilon $.
 \end{definition}
 
 \setcounter{definition}{55}
 \begin{definition} [Nondecreasing]
-%	Definition 5.56: (Nondecreasing) Let f be real valued on an interval I. If f(x1) \leq f(x2) whenever x1
-%	and x2 are points in I with x1 < x2, we say f is nondecreasing on I.
+	Let $ f $ be real valued on an interval $ I $. If $ f(x1) \leq f(x2) $ whenever $ x1 $
+	and $ x2 $ are points in $ I $ with $ x1 < x2 $, we say $ f $ is \textit{nondecreasing} on $ I $.
 \end{definition}
 
 
 \begin{definition} [Increasing]
-%	Definition 5.57: (Increasing) Let f be real valued on an interval I. If the strict inequality f(x1) < f(x2)
-%	holds whenever x1 and x2 are points in I with x1 < x2, we say f is increasing on I.
+	Let $ f $ be real valued on an interval $ I $. If the strict inequality $ f(x1) < f(x2) $ holds whenever $ x1 $ and $ x2 $ are points in $ I $ with $ x1 < x2 $, we say $ f $ is \textit{increasing} on $ I $.
 \end{definition}
 
 
 \begin{definition} [Nonincreasing]
-%	Definition 5.58: (Nonincreasing) Let f be real valued on an interval I. If f(x1) \geq f(x2) whenever x1
-%	and x2 are points in I with x1 < x2, we say f is nonincreasing on I.
+	Let $ f $ be real valued on an interval $ I $. If $ f(x1) \geq f(x2) $ whenever $ x1 $ and $ x2 $ are points in $ I $ with $ x1 < x2 $, we say $ f $ is \textit{nonincreasing} on $ I $.
 \end{definition}
 
 
 \begin{definition} [Decreasing]
-%	Definition 5.59: (Decreasing) Let f be real valued on an interval I. If the strict inequality f(x1) > f(x2)
-%	holds whenever x1 and x2 are points in I with x1 < x2, we say f is decreasing on I.
+	Let $ f $ be real valued on an interval $ I $. If the strict inequality $ f(x1) > f(x2) $ holds whenever $ x1 $ and $ x2 $ are points in $ I $ with $ x1 < x2 $, we say $ f $ is \textit{decreasing} on $ I $.
 \end{definition}
 
 
