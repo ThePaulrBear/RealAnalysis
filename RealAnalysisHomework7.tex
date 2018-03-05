@@ -1,0 +1,223 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\DeclarePairedDelimiter{\bracks}{\lbrack}{\rbrack}
+\DeclarePairedDelimiter{\braces}{\lbrace}{\rbrace}
+
+% Lists
+\newcommand\textlist[3][\cr]{%
+	\readlist\indices{#3}%
+	\foreachitem\x\in\indices{%
+		\ifnum\xcnt=1\else, \fi$#2_{\x}$%
+	}%
+	\ifx\cr#1\relax, \ldots\else%
+	\if\relax#1\relax\else, \ldots, $#2_{#1}$\fi%
+	\fi%
+}
+
+% Highly-Reusable
+\def \R {\mathbb{R}}
+\def \N {\mathbb{N}}
+\def \epsilon {\varepsilon}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\limittoinfy}[1]{\lim_{#1 \to \infty}}
+\def \limittoinfyn {\lim_{n \to \infty}}
+\def \limsup {\lim_{n \to \infty} \sup}
+\def \liminf {\lim_{n \to \infty} \inf}
+
+\def \limitToXZero {\lim_{x \to x_0}}
+\def \limsupX0 {\underset{x \to x_0}{\lim \sup}}
+\def \liminfX0 {\underset{x \to x_0}{\lim \inf}}
+\def \limToX0FromRight {\lim_{x \to x_0+}}
+
+\newcommand{\sumofto}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\sumnto}[1]{\sumofto{n}{#1}}
+\newcommand{\sumoftoinfty}[1]{\sumofto{#1}{\infty}}
+\def \sumntoinfy {\sumnto{\infty}}
+
+\def \sn {s_n}
+\def \snplusone {s_{n+1}}
+\def \seqsn{ \set{\sn} }
+\def \tn {t_n}
+\def \xn {x_n}
+\def \an {a_n}
+\def \en {e_n}
+\def \bn {b_n}
+\def \ak {a_k}
+
+\def \scriptC {\mathcal{C}}
+\def \scriptU {\mathcal{U}}
+
+\newtheorem{theorem}{Theorem}[]
+
+\title{Assignment 7}
+\author{Paul Wintz\\117 Real Analysis}
+\date{March 5, 2018}
+
+\begin{document}
+\maketitle
+
+
+\def \L {\sqrt{x_0}}
+\def \M {\sqrt{x_0 + 1} + \L}
+\section*{5.1 \textsl{}Introduction to Limits}
+\paragraph{Exercise 5.1.8.} Prove the validity of the limit $\lim_{x \rightarrow x_0} \sqrt{x} = \L$.
+
+\begin{proof}
+
+If the limit exists, then for any $\epsilon_0 > 0$, there exists $\delta > 0$ such that 
+	$$ \abs*{\sqrt{x} - \L} < \epsilon_0 $$ 
+for all $x$ such that $ 0 < \abs*{x - x_0} < \delta$.
+
+\begin{align*}
+	\abs*{\sqrt{x} - \L} &< \epsilon_0 \\
+	\abs*{\sqrt{x} - \L}\abs*{\sqrt{x} + \L} &< \epsilon_0 \abs*{\sqrt{x} + \L} \tag{Multiply by congegate}  \\
+	\abs*{x - \L^2} &< \epsilon_0 \abs*{\sqrt{x} + \L} \\
+	\abs*{x - x_0} &< \epsilon_0 (\sqrt{x} + \L) \tag{$ \sqrt{x} \geq 0 \quad \forall x $}
+\end{align*}
+
+We can take $ \epsilon = \epsilon_0 M$, where $M = \M$. 
+
+We are looking for values of $x$ that are close to $x_0$, so let us add the constraint that $x_0 - 1 < x < x_0 + 1$. Consequently:
+\begin{align*}
+\sqrt{x} + \L &< \M \\
+\epsilon_0 (\sqrt{x} + \L)& < \epsilon_0 (\M) \\
+&< \epsilon_0 M \\
+&< \epsilon
+\end{align*}
+
+Therefore, let $\delta = \min(1, \epsilon)$. 
+
+\end{proof}
+
+
+\paragraph{Exercise 5.1.12.} Suppose that $x_0$ is a point of accumulation of both $A$ and $B$ and that $f:A \to \R$ and $g:B \to \R$.
+We insist that $f$ and $g$ must agree in the sense that $f(x) = g(x)$ if $x$ is in both $A$ and $B$.
+\begin{enumerate}[label=(\alph*)]
+	\item What conditions on $A$ and $B$ ensure that if the limit $\lim_{x \rightarrow x_0} f(x)$ exists so too must the limit $\lim_{x \rightarrow x_0} g(x)$?
+
+	Condition: There exists a $ \delta $, and $ I = (x_0 - \delta, x_0 + \delta) $, such that $$ B \cap I \subseteq A $$.
+	
+	\begin{proof}
+		% TODO: Prove it.
+	\end{proof}
+
+	\item What conditions on $A$ and $B$ ensure that if
+    \[ \lim_{x \rightarrow x_0} f(x) \text{ and} \lim_{x \rightarrow x_0} g(x) \]
+    both exist, then they must be equal?
+
+	Condition: $ x_0 $ is a point of accumulation of $ A \cap B $
+	\begin{proof}
+		% TODO: Prove it.
+	\end{proof}
+
+\end{enumerate}
+
+\paragraph{Exercise 5.1.19.} Let $x_0$ be an accumulation point of the domain $E$ of a function $f$.
+Prove that the limit $\lim_{x \rightarrow x_0} f(x)$ fails to exist if and only if there is a sequence of distinct points $\{e_n\}$ of $E$ converging to $x_0$ but with $ \set{ f(\en) } $ divergent.
+
+\begin{proof}
+%	TODO :verify claims
+	
+	We need to show that if $ \set{ f(\en)} $ diverges, then $\limittoinfyn f(\en)$ does not exist, and that if $\limittoinfyn f(\en)$ does not exist then $ \set{ f(\en)} $ diverges.
+	
+	% If $ \set{f(\en)}$ diverges then the limit does not exist.
+	
+	Let us aFor all sequences of $ \set{\en} $ such that $ \en \in E \quad \en \ne x_o $ and $ \en \to x_0 $ as $ n \to \infty $, then 
+		$$ \limittoinfyn f(\en) = L$$
+	But, $ \set{f(\en)} $ diverges, so $\limittoinfyn f(\en)$ does not exist.
+	
+
+	Furthermore, if $$ \limittoinfyn f(\en) $$ does not exist, then there  since by the sequential definition of a function converging at $ x_0 $, there exists 
+	
+
+\end{proof}
+
+\paragraph{Exercise 5.1.35.} Formulate a definition for the statements
+\[ \lim_{x \rightarrow \infty} f(x) = \infty \text{ and} \lim_{x \rightarrow -\infty} f(x) = \infty. \]
+
+\begin{enumerate}
+	\item For all $ M > 0 $, there exists an $ x^* $ such that $ \forall x > x^* $, $ f(x) > M $.
+	\item For all $ m < 0 $, there exists an $ x_* $ such that $ \forall x < x_* $, $ f(x) < m $.
+\end{enumerate}
+
+
+\section*{5.2 Properties of Limits}
+\paragraph{Exercise 5.2.1.} Give an epsilon-delta proof of Theorem 5.10.
+	
+\begin{proof}
+	Assume that 
+		$$ \limitToXZero f(x_0) = L_1  \text{ and } \limitToXZero f(x_0) = L_2 $$
+	where $ L_1 \ne L_2 $. By definition, there exist $ \epsilon_1 > 0 $ and $ \epsilon_2 > 0 $, such that
+		$$ \abs{f(x_0) - L_1} < \epsilon_1  \text{ and } \abs{f(x_0) - L_2} < \epsilon_2 $$
+
+	Since $ \epsilon_1 $ and $ \epsilon_2 $ can be arbitrarily small, then for all $\epsilon > 0$, we can choose $ \epsilon_1 $ and $ \epsilon_2 $ such that $\epsilon_1 + \epsilon_2 < \epsilon$.
+	So, by algebra:
+	\begin{align*}
+		\abs{f(x_0) - L_1} + \abs{f(x_0) - L_2} &< \epsilon_1 + \epsilon_2 < \epsilon\\
+		\abs{L_1 - f(x_0)} + \abs{f(x_0) - L_2} &< \epsilon \tag{Note: $ \abs{a} = \abs{-a} $}
+	\end{align*}
+	
+	Furthermore, by the triangle inequality, 
+	\begin{align*}
+		\abs{L_1 - f(x_0) + f(x_0) - L_2} &\leq \abs{L_1 - f(x_0)} + \abs{f(x_0) - L_2} \\
+		\abs{L_1 - L_2} &\leq \abs{L_1 - f(x_0)} + \abs{f(x_0) - L_2} \\
+	\end{align*}
+
+	Which means that $ \abs{L_1 - L_2} < \epsilon $. But we assumed that $L_1 \ne L_2$, so there is an $\epsilon < \abs{L_1 - L_2}$, which is a contradiction, therefore $L_1 = L_2$. The limit is unique.
+	
+\end{proof}
+
+
+\newcommand{\dom}[1]{\text{dom}(#1)}
+\newcommand{\inv}[1]{#1^{-1}}
+\paragraph{Exercise 5.2.8.} Let $f$ and $g$ be functions with domains $\dom{f}$ and $\dom{g}$.
+What are the domains of the functions listed below obtained by combining these functions algebraically or by a composition?
+\begin{enumerate}[label=(\alph*)] %TODO
+  \item $ \dom{f + g} = \dom{f} \cap \dom{g} $
+
+  \item $ \dom{f - g} = \dom{f} \cap \dom{g} $
+
+  \item $ \dom{fg} = \dom{f} \cap \dom{g} $
+
+  \item $ \dom{f/g} = \dom{f} \cap \dom{g} \setminus \dom{\inv{g}(0)}$
+  
+  \item $ \dom{f \circ g} = \dom{g} \cap \inv{g}(\dom{f})$
+  
+  \item $ \dom{\sqrt{f + g}} = \dom{f} \cap \dom{g} \cap \set{x : f(x) + g(x) \ge 0} $
+  
+  \item $ \dom{\sqrt{fg}} = \dom{f} \cap \dom{g} \cap \set{x : f(x)g(x) \ge 0} $
+  
+\end{enumerate}
+
+\paragraph{Exercise 5.2.11.} In the statement of Theorem 5.18 don't we also have to assume that $g(x)$ is never zero?
+
+No. Limits do not care about the value of $ f(x_0) $, only the values in the neighborhood.
+
+For example, take the functions:
+\begin{align*}
+	f(x) &= 1 \\
+	g(x) &=
+		\begin{cases}
+		1 & \quad \text{if } x \ne 0 \\
+		0 & \quad \text{if } x = 0
+		\end{cases}
+\end{align*}
+Clearly, 
+	$$\limitToXZero \frac{f(x)}{g(x)} = \frac{\limitToXZero f(x)}{\limitToXZero g(x)} = \frac{1}{1} = 1 $$
+since $ \frac{f(x)}{g(x)} =1 $ in all neighborhoods of $ x_0 $, except at $x_0$, and 
+
+\paragraph{Exercise 5.2.16.} Prove Theorem 5.17 by correcting the flawed epsilon-delta proof in Exercise 5.2.12 and by using the sequential definition of limit.
+Which method is easier?
+
+%TODO
+
+\end{document}
