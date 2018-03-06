@@ -78,23 +78,17 @@ If the limit exists, then for any $\epsilon_0 > 0$, there exists $\delta > 0$ su
 for all $x$ such that $ 0 < \abs*{x - x_0} < \delta$.
 
 \begin{align*}
-	\abs*{\sqrt{x} - \L} &< \epsilon_0 \\
-	\abs*{\sqrt{x} - \L}\abs*{\sqrt{x} + \L} &< \epsilon_0 \abs*{\sqrt{x} + \L} \tag{Multiply by congegate}  \\
-	\abs*{x - \L^2} &< \epsilon_0 \abs*{\sqrt{x} + \L} \\
-	\abs*{x - x_0} &< \epsilon_0 (\sqrt{x} + \L) \tag{$ \sqrt{x} \geq 0 \quad \forall x $}
+	\abs*{\sqrt{x} - \L} &< \epsilon \\
+	\abs*{\sqrt{x} - \L}\frac{\sqrt{x} + \L}{\sqrt{x} + \L} &< \epsilon \\
+	\frac{\abs*{x - x_0}}{\sqrt{x} + \L} &< \epsilon
 \end{align*}
 
-We can take $ \epsilon = \epsilon_0 M$, where $M = \M$. 
-
-We are looking for values of $x$ that are close to $x_0$, so let us add the constraint that $x_0 - 1 < x < x_0 + 1$. Consequently:
-\begin{align*}
-\sqrt{x} + \L &< \M \\
-\epsilon_0 (\sqrt{x} + \L)& < \epsilon_0 (\M) \\
-&< \epsilon_0 M \\
-&< \epsilon
-\end{align*}
-
-Therefore, let $\delta = \min(1, \epsilon)$. 
+We know that 
+	$$ \frac{\abs*{x - x_0}}{\sqrt{x} + \L}  < \frac{\abs*{x - x_0}}{\L}$$
+If we take  $ \abs*{x - x_0} < \delta = \epsilon \L $, then we get $$\frac{\abs*{x - x_0}}{\L} < \epsilon $$ 
+So: 
+	$$ \frac{\abs*{x - x_0}}{\sqrt{x} + \L} < \epsilon $$ 
+Therefore our $\delta = \epsilon \L$ satisfies the conditions for the limit to exist (for $x_0 > 0$).
 
 \end{proof}
 
@@ -102,12 +96,16 @@ Therefore, let $\delta = \min(1, \epsilon)$.
 \paragraph{Exercise 5.1.12.} Suppose that $x_0$ is a point of accumulation of both $A$ and $B$ and that $f:A \to \R$ and $g:B \to \R$.
 We insist that $f$ and $g$ must agree in the sense that $f(x) = g(x)$ if $x$ is in both $A$ and $B$.
 \begin{enumerate}[label=(\alph*)]
-	\item What conditions on $A$ and $B$ ensure that if the limit $\lim_{x \rightarrow x_0} f(x)$ exists so too must the limit $\lim_{x \rightarrow x_0} g(x)$?
+	\item What conditions on $A$ and $B$ ensure that if the limit $\limitToXZero f(x)$ exists so too must the limit $\limitToXZero g(x)$?
 
-	Condition: There exists a $ \delta $, and $ I = (x_0 - \delta, x_0 + \delta) $, such that $$ B \cap I \subseteq A $$.
-	
+	Condition: There exists a $ \delta $, and $ I = (x_0 - \delta, x_0 + \delta) $, such that $$ B \cap I \subseteq A $$ and $ x_0 $ is an accumulation point of $ B \cap I $.
 	\begin{proof}
-		% TODO: Prove it.
+		Within $ I $, every $b \in B $ must also be in $ A $. For every $ x $ that is in both $ A $ and $ B $, $ f(x) = g(x) $. By the sequential definition of a limit of a function, for all $ \set{\sn} $ where $ \sn \in A $ and $ \sn \to x_0$ as $ n \to \infty $, then $$ \limittoinfyn f(\sn) = \limitToXZero f(x)$$ 
+		
+		Furthermore, for any sequence $ \set{\tn} $ where $ \tn \in B \cap I$ and $ \tn \to x_0$ as $ n \to \infty $, then $$ \limittoinfyn g(\tn) = \limitToXZero g(x)$$
+		However, since $B \cap I \subseteq A$, we know $ \set{\tn} $ will be a subsequence of some $ \set{\sn}$, therefore $$ \limittoinfyn g(\tn) = \limittoinfyn f(\sn) = \limitToXZero f(x)$$
+		
+		Therefore, $$ \limitToXZero f(x) = \limitToXZero g(x) $$
 	\end{proof}
 
 	\item What conditions on $A$ and $B$ ensure that if
@@ -116,7 +114,23 @@ We insist that $f$ and $g$ must agree in the sense that $f(x) = g(x)$ if $x$ is 
 
 	Condition: $ x_0 $ is a point of accumulation of $ A \cap B $
 	\begin{proof}
-		% TODO: Prove it.
+		Since $ \limitToXZero f(x) $ and $ \limitToXZero g(x) $ exist, then for all $ \epsilon > 0 $, there exist $ \delta_1 > 0$, $\delta_2 >0 $ such that $$ |f(x) - L_1| < \epsilon $$ for all $x \in (x_0 - \delta_1, x_0 + \delta_1)$, and $$ |g(x) - L_2| < \epsilon $$ for all $x \in (x_0 - \delta_2, x_0 + \delta_2)$. 
+		
+		Let $ \delta = \min(\delta_1, \delta_2) $. From our condition, and by the definition of accumulation points, every interval $ (x - \delta, x + \delta) $ contains a point $x^*$ in $ A \cap B $. But for any point in this interval, $ |f(x^*) - L_1| < \epsilon $ and $ |g(x^*) - L_2| < \epsilon $, so:
+			$$ |f(x^*) - L_1| + |g(x^*) - L_2| < \epsilon + \epsilon $$
+		
+		Furthermore, by the triangle inequality, 
+		$$|f(x^*) - L_1 + L_2 - g(x^*)| \leq |f(x^*) - L_1| + |L_2 - g(x^*)|$$
+		And because $ f(x^*) = g(x^*) $:
+		$$|f(x^*) - L_1 + L_2 - g(x^*)| = |f(x^*) - L_1 + L_2 - f(x^*)| = | L_2 - L_1 | < 2\epsilon$$
+		
+		We can make $ 2\epsilon $ smaller than the distance between any two distinct numbers, therefore $$ L_2 = L_1 $$
+	
+					
+%		It is given that $x_0$ is a accumulation point of both $ A $ and $ B $, there exists sequences $ \set{\sn} $ where $ \sn \in A $ and $ \sn \to x_0$ as $ n \to \infty $, and $ \set{\tn} $ where $ \tn \in B $ and $ \tn \to x_0$ as $ n \to \infty $. , then $$ \limittoinfyn g(\tn) = \limitToXZero g(x)$$
+%		However, since $B \cap I \subseteq A$, we know $ \set{\tn} $ will be a subsequence of some $ \set{\sn}$, therefore $$ \limittoinfyn g(\tn) = \limittoinfyn f(\sn) = \limitToXZero f(x)$$
+%		
+%		 $$ \limittoinfyn f(\sn) = \limitToXZero f(x)$$ 
 	\end{proof}
 
 \end{enumerate}
@@ -131,13 +145,15 @@ Prove that the limit $\lim_{x \rightarrow x_0} f(x)$ fails to exist if and only 
 	
 	% If $ \set{f(\en)}$ diverges then the limit does not exist.
 	
-	Let us aFor all sequences of $ \set{\en} $ such that $ \en \in E \quad \en \ne x_o $ and $ \en \to x_0 $ as $ n \to \infty $, then 
+	Assume that $$ \limitToXZero f(x) = L $$
+	
+	By definition of a function converging at $ x_0 $, for all sequences of $ \set{\en} $ such that $ \en \in E \quad \en \ne x_o $ and $ \en \to x_0 $ as $ n \to \infty $, then 
 		$$ \limittoinfyn f(\en) = L$$
-	But, $ \set{f(\en)} $ diverges, so $\limittoinfyn f(\en)$ does not exist.
+	But, $ \set{f(\en)} $ diverges, which means $ \limittoinfyn f(\en) $ does not exist, therefore $\limitToXZero f(x)$ also does not exist.
 	
-
-	Furthermore, if $$ \limittoinfyn f(\en) $$ does not exist, then there  since by the sequential definition of a function converging at $ x_0 $, there exists 
+	Conversely, if $$ \limittoinfyn f(\en) $$ does not exist, then there exists a sequence $ \set{\en} $ where $ \en \in E $ with $ \en \ne x_0 $, and $ \en \to x_0 $ as $ n \to \infty $ such that $$ \limittoinfyn f(\en) $$ does not exist, so $ \set{ f(\en)} $ diverges.	
 	
+	Therefore the limit $\lim_{x \rightarrow x_0} f(x)$ fails to exist if and only if there is a sequence of distinct points $\{e_n\}$ of $E$ converging to $x_0$ but with $ \set{ f(\en) } $ divergent.
 
 \end{proof}
 
@@ -218,6 +234,27 @@ since $ \frac{f(x)}{g(x)} =1 $ in all neighborhoods of $ x_0 $, except at $x_0$,
 \paragraph{Exercise 5.2.16.} Prove Theorem 5.17 by correcting the flawed epsilon-delta proof in Exercise 5.2.12 and by using the sequential definition of limit.
 Which method is easier?
 
-%TODO
+\textbf{Note to Reader}: The answer to this problem is not complete. The major flaw in the students proof is using 
+	$$ \frac{\epsilon}{2|f(x)| + 1} \text{ instead of } \frac{\epsilon}{2|M| + 1} $$ but I have not worked out all the details. 
+
+\begin{enumerate} 
+	\item First off, the student uses, but does not define, L or M, so let 
+		$$ \limitToXZero f(x) = L \text{ and } \limitToXZero g(x) = M$$
+	By the definition of that $ \epsilon > 0 $.
+	Choose $ \delta_1 $ so that
+		$$ |f(x) - L| <\frac{\epsilon}{2|M| + 1} $$
+	if $ 0 < |x - x_0| < \delta_1 $ and also choose $ \delta_2 $ so that 
+		$$ |g(x) - M| < \frac{\epsilon}{2|L| + 1} $$ 
+	if $ 0 < |x - x_0| < \delta_2 $. 
+	
+	Define $ \delta = \min \set{\delta_1, \delta_2} $. If $ 0 < |x - x_0| < \delta $, then we have 
+	$$ |f(x)g(x) - LM| \leq |f(x)| |g(x) - M| + |M| |f(x) - L| \leq≤ |f(x)| \frac{\epsilon}{2|f(x)| + 1} + |M| \frac{\epsilon}{2|M| + 1} < \epsilon $$. 
+	
+	Therefore $ f(x)g(x) \to LM $ if $ f(x) \to L $ and $ g(x) \to M $.”
+	
+	\item 
+	Let $ \set{\sn}$ and be any sequence of points in $ \dom{f} $ such that $ \sn \to x_0 $ as $ n \to \infty $, and let $ \set{\tn}$ and be any sequence of points in $ \dom{g} $ such that $ \tn \to x_0 $, as $ n \to \infty $. By the theorem for products of limits of sequences, we know that $$ \limittoinfyn (\sn\tn)  = \left(\limittoinfyn \sn \right) \left(\limittoinfyn \tn \right)$$
+\end{enumerate}
+
 
 \end{document}
