@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\DeclarePairedDelimiter{\bracks}{\lbrack}{\rbrack}
+\DeclarePairedDelimiter{\braces}{\lbrace}{\rbrace}
+
+
+\newcommand\textlist[3][\cr]{%
+	\readlist\indices{#3}%
+	\foreachitem\x\in\indices{%
+		\ifnum\xcnt=1\else, \fi$#2_{\x}$%
+	}%
+	\ifx\cr#1\relax, \ldots\else%
+	\if\relax#1\relax\else, \ldots, $#2_{#1}$\fi%
+	\fi%
+}
+
+% Highly-Reusable
+\def \R {\mathbb{R}}
+\def \N {\mathbb{N}}
+\def \scriptC {\mathcal{C}}
+\def \scriptU {\mathcal{U}}
+
+\def \epsilon {\varepsilon}
+\def \halfepsilon {\frac{\epsilon}{2}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\limittoinfy}[1]{\lim_{#1 \to \infty}}
+\def \limittoinfyn {\lim_{n \to \infty}}
+\def \limsup {\lim_{n \to \infty} \sup}
+\def \liminf {\lim_{n \to \infty} \inf}
+
+\def \limitToXZero {\lim_{x \to x_0}}
+\def \limsupX0 {\underset{x \to x_0}{\lim \sup}}
+\def \liminfX0 {\underset{x \to x_0}{\lim \inf}}
+\def \limToX0FromRight {\lim_{x \to x_0+}}
+
+\newcommand{\sumofto}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\sumnto}[1]{\sumofto{n}{#1}}
+\newcommand{\sumoftoinfty}[1]{\sumofto{#1}{\infty}}
+\def \sumntoinfy {\sumnto{\infty}}
+
+\def \sn {s_n}
+\def \snplusone {s_{n+1}}
+\def \seqsn{ \set{\sn} }
+\def \tn {t_n}
+\def \xn {x_n}
+\def \an {a_n}
+\def \en {e_n}
+\def \bn {b_n}
+\def \ak {a_k}
+
+% DO NOT REUSE
+\def \xm {x_m}
+
+\title{Assignment 8}
+\author{NAME HERE\\117 Real Analysis}
+\date{March 14, 2018}
+
+\begin{document}
+\maketitle
+
+\paragraph{Exercise 5.5.4} If $f \circ f$ is continuous, does it follow that $f$ is continuous?
+
+No. Counter-example: the function 
+$$ f(x) =
+	\begin{cases}
+	1 & \quad \text{if } x \geq 0 \\
+	0 & \quad \text{if } x < 0
+	\end{cases}
+$$
+is discontinuous at $x = 0$, but $f(f(x)) = 1$ is continuous.
+
+\paragraph{Exercise 5.6.8} \textit{Let $f$ be a uniformly continuous function on a set $E$. Show that if $\{x_n\}$ is a Cauchy sequence in $E$ then $\{f(x_n)\}$ is a Cauchy sequence in $f(E)$.}
+
+\begin{proof}
+	By the definition of uniformly continuous functions, for all $ \epsilon > 0 $ there exists $\delta > 0 $ such that $\forall x, y \in E \quad \abs*{f(x) - f(y)} < \epsilon $ where $ \abs*{x - y} < \delta$.
+	
+	Additionally, since $\set{\xn}$ is a Cauchy sequence, $\forall \epsilon_0 > 0$ there exists an $ N \in \N$ such that $ \abs{\xn - x_m} < \epsilon_0 $ for all $n, m > N$. Since $ \epsilon_0$ can be any positive value, let us take $ \epsilon_0 = \delta $, so $ \abs{\xn - x_m} < \delta $.
+	
+	Thus, we can substitute $\xn = x$ and $x_m = y$, giving us $\abs{f(\xn) - f(x_m)} < \epsilon$ for all $m, n > N$. This is the definition of a Cauchy sequence, therefore $\set{f(\xn)}$ is a Cauchy sequence.
+\end{proof}
+
+\def \xntozero {\lim_{\xn \to 0^+}}
+\textit{Show that this need not be true if $f$ is continuous, but not uniformly continuous.}\newline
+
+Counter example: For $f(x) = \frac{1}{x} $, which is continuous, but not uniformly continuous on on $E = (0, \infty)$, the sequence $\set{f(\xn)}$ where $\xn\to 0$ as $n \to \infty$, is not a Cauchy sequence. 
+\begin{proof}
+	Let $ \set{\xn}$ be a Cauchy sequence where $\xn > 0$ and $\xn \to 0$ as $n \to \infty$. By definition of Cauchy sequences, for all $\epsilon > 0$, there exists an $N \in \N$ such that $\abs{\xn - x_m} < \epsilon \quad \forall n, m > N$. Let us take $x_m = \xn + \halfepsilon$, so 
+	\begin{align*}
+		\abs*{f(\xn) - f\left(\xn + \halfepsilon\right)} &= \abs*{\frac{1}{\xn} - \frac{1}{\xn+ \halfepsilon}} \\
+					&= \abs*{\frac{\xn + \halfepsilon}{\xn(\xn+ \halfepsilon)} - \frac{\xn}{\xn(\xn+ \halfepsilon)}} \\
+					&= \abs*{\frac{\xn + \halfepsilon - \xn}{\xn(\xn+ \halfepsilon)}} \\
+					&= \abs*{\frac{1}{\xn}\frac{\halfepsilon }{(\xn + \halfepsilon)}} \\
+					&= \frac{1}{\xn}\frac{\halfepsilon }{(\xn+ \halfepsilon)} \tag{$\xn$ and $\epsilon$ are always positive}
+	\end{align*}
+	However, as $n$ goes to infinity, $\xn \to 0$:
+	\begin{align*}
+		\xntozero \frac{1}{\xn}\frac{\halfepsilon }{(\xn+ \halfepsilon)} &= \xntozero \frac{1}{\xn} \limittoinfyn \frac{\halfepsilon }{(\xn+ \halfepsilon)} \\
+			&= \xntozero \frac{1}{\xn} \frac{\halfepsilon }{\xntozero(\xn+ \halfepsilon)}  \\
+			&= \xntozero \frac{1}{\xn} \frac{\halfepsilon }{0 + \halfepsilon}    \\
+			&= \xntozero \frac{1}{\xn} \\
+			&= \infty
+	\end{align*}
+	So $$\limittoinfyn \abs*{f(\xn) - f\left(\xn + \halfepsilon\right)} = \infty$$
+	Which means that for any $\epsilon$, there is a value $ n $, such that 
+		$$\abs*{f(\xn) - f(\xm)} > \epsilon$$
+	therefore $\set{f(\xn)}$ is not a Cauchy sequence.
+\end{proof}
+
+\paragraph{Exercise 5.6.14} Prove the following: Suppose that $f:E \to \R$ is continuous.
+  If $E$ is compact, then $f$ must be uniformly continuous on $E$.
+  Conversely, if every continuous function $f:E \to \R$ is uniformly continuous, then $E$ must be compact.
+
+\section*{5.10 Challenging Problems}
+\paragraph{Exercise 5.10.2} Suppose that $f$ is a function defined on the real line with the property that $f(x+y) = f(x) + f(y)$ for all $x,y$.
+Suppose that $f$ is continuous at 0.
+Show that $f(x) = Cx$ for all $x$ and some number $C$.
+
+\begin{proof}
+	Take $ n \in \N $   
+\end{proof}
+
+
+\end{document}
+
+
