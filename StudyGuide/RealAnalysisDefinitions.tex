@@ -5,12 +5,23 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{mathtools}
+\usepackage{listofitems}
 
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 
 \DeclarePairedDelimiter{\bracks}{\lbrack}{\rbrack}
 \DeclarePairedDelimiter{\braces}{\lbrace}{\rbrace}
+
+\newcommand\textlist[3][\cr]{%
+	\readlist\indices{#3}%
+	\foreachitem\x\in\indices{%
+		\ifnum\xcnt=1\else, \fi$#2_{\x}$%
+	}%
+	\ifx\cr#1\relax, \ldots\else%
+	\if\relax#1\relax\else, \ldots, $#2_{#1}$\fi%
+	\fi%
+}
 
 % Highly-Reusable
 \def \R {\mathbb{R}}
@@ -162,7 +173,7 @@
 
 \setcounter{definition}{36}
 \begin{definition} [Subsequences]
-	Let $ s_1, s_2, s_, s_4, \dots $ be any sequence. Then by a \textit{subsequence} of this sequence we mean any sequence $$s_{n_1}, s_{n_2}, s_{n_3}, \dots$$ where $n_1 < n_2 < n_3 < \dots$ is an increasing sequence of natural numbers.
+	Let \textlist{s}{1, 2, 3} be any sequence. Then by a \textit{subsequence} of this sequence we mean any sequence \textlist{s}{n_1, n_2, n_3} where $n_1 < n_2 < n_3 < \dots$ is an increasing sequence of natural numbers.
 \end{definition}
 
 \setcounter{definition}{43}
