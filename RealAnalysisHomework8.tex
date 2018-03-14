@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{mathtools}
+\usepackage{listofitems}
 
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
@@ -29,8 +30,11 @@
 \def \scriptC {\mathcal{C}}
 \def \scriptU {\mathcal{U}}
 
+\newcommand{\half}[1]{\frac{#1}{2}}
+
 \def \epsilon {\varepsilon}
 \def \halfepsilon {\frac{\epsilon}{2}}
+\def \halfdelta {\half{\delta}}
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\limittoinfy}[1]{\lim_{#1 \to \infty}}
 \def \limittoinfyn {\lim_{n \to \infty}}
@@ -61,7 +65,7 @@
 \def \xm {x_m}
 
 \title{Assignment 8}
-\author{NAME HERE\\117 Real Analysis}
+\author{Paul Wintz\\117 Real Analysis}
 \date{March 14, 2018}
 
 \begin{document}
@@ -115,18 +119,58 @@ Counter example: For $f(x) = \frac{1}{x} $, which is continuous, but not uniform
 	therefore $\set{f(\xn)}$ is not a Cauchy sequence.
 \end{proof}
 
-\paragraph{Exercise 5.6.14} Prove the following: Suppose that $f:E \to \R$ is continuous.
-  If $E$ is compact, then $f$ must be uniformly continuous on $E$.
-  Conversely, if every continuous function $f:E \to \R$ is uniformly continuous, then $E$ must be compact.
+\paragraph{Exercise 5.6.14} \textit{Prove the following: Suppose that $f:E \to \R$ is continuous. If $E$ is compact, then $f$ must be uniformly continuous on $E$.}
+
+\def \xihalfdeltainterval {\left(x_i - \half{\delta(x_i)}, x_i + \half{\delta(x_i)} \right)}
+\begin{proof}
+	Because $f$ is continuous, $\forall x_0 \in E$ and $\forall \epsilon > 0$, there exists $ \delta(x_0) > 0$ such that $\abs{f(x) - f(x_0)} < \halfepsilon$ for all $x \in E$ where $\abs{x - x_0} < \delta(x_0)$.
+	The set 
+		$$\scriptU = \set{(x - \half{\delta(x)}, x + \half{\delta(x)}) \; : \; \forall x \in E}$$ 
+	is an open cover of $E$. By theorem 4.33, every compact set has the Heine-Borel property, so there exists a finite subset of $\scriptU$ that is an open cover of $E$. This means that there is a list \textlist[n]{x}{1, 2} such that 
+		$$E \subset \bigcup\limits_{i=1}^{n} \xihalfdeltainterval$$
+	If we take the $\delta = \min \set{\half{\delta(x_i)} : i = 1, \dots, n} $, then for every $x, x_0 \in E$ where $\abs{x - x_0} < \delta$ there exists $i \in \set{1, \dots, n}$ such that 
+		$$ x \in \xihalfdeltainterval$$		
+	and $\abs{x - x_0} < \delta \leq \half{\delta(x_i)}$. 
+	
+	It then follows that: 
+	\begin{align*}
+		\abs{x_i - x_0} &= \abs{x_0 - x_i} \\
+					&= \abs{x_0 - x + x - x_i} \\
+					&\leq \abs{x_0 - x} + \abs{x - x_i} \tag{Triangle Inequality}
+	\end{align*}
+	We know $ \abs{x_0 - x} < \half{\delta(x_i)}$ and $ \abs{x - x_i} < \half{\delta(x_i)}$, so 
+		$$\abs{x_i - x_0} \leq \abs{x_0 - x} + \abs{x - x_i} \leq \half{\delta(x_i)} + \half{\delta(x_i)} < \delta(x_i) $$
+	Additionally, we showed above that $\abs{f(x) - f(x_0)} < \halfepsilon$ for all $x \in E$ where $\abs{x - x_0} < \delta(x_0)$, so
+		$$\abs{f(x_i) - f(x_0)} \leq \abs{f(x_0) - f(x)} + \abs{f(x) - f(x_i)} \leq \halfepsilon + \halfepsilon < \epsilon $$
+	Therefore $f$ is uniformly continuous. 
+\end{proof}
+
+\textit{Conversely, if every continuous function $f:E \to \R$ is uniformly continuous, then $E$ must be compact.}
+
+\begin{proof}
+%	In order for $E$ to be not compact, it must be either not closed or not bounded. 
+%	Case 1: let $f$ be a uniformly continuous function on $E$ and $E$ is not closed.
+%	
+%	
+%	
+%	Case 2: Let $f$ be any uniformly continuous function on $E$ and assume $E$ is not bounded. 
+	TODO...
+	
+	
+\end{proof}
+
+
 
 \section*{5.10 Challenging Problems}
 \paragraph{Exercise 5.10.2} Suppose that $f$ is a function defined on the real line with the property that $f(x+y) = f(x) + f(y)$ for all $x,y$.
 Suppose that $f$ is continuous at 0.
 Show that $f(x) = Cx$ for all $x$ and some number $C$.
 
-\begin{proof}
-	Take $ n \in \N $   
-\end{proof}
+
+
+
+
+
 
 
 \end{document}
